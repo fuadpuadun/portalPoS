@@ -57,8 +57,9 @@
             </div>
         </nav>
 
+        <!--Enable Code dibawah buat dijadiin template header&footer-->
         <!--<div class="pt-5">
-        //<?= $this->renderSection('content') ?>
+        <//?= $this->renderSection('content') ?>
         </div>  -->
 
         <!-- Footer -->
