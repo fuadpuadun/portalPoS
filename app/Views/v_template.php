@@ -30,13 +30,13 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url(''); ?>">Beranda</a>
+                        <a class="nav-link" href= "<?php echo base_url('beranda'); ?>">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url(''); ?>">Barang</a>
+                        <a class="nav-link" href= "<?php echo base_url('beranda'); ?>">Barang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url(''); ?>">Keranjang</a>
+                        <a class="nav-link" href= "<?php echo base_url('keranjang'); ?>">Keranjang</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href= "<?php echo base_url(''); ?>">Laporan Penjualan</a>
@@ -57,10 +57,10 @@
             </div>
         </nav>
 
-        <!--Enable Code dibawah buat dijadiin template header&footer-->
-        <!--<div class="pt-5">
-        <//?= $this->renderSection('content') ?>
-        </div>  -->
+        <!--Enable Code dibawah buat menampilkan template header&footer-->
+        <div class="pt-5">
+        <?= $this->renderSection('content') ?>
+        </div>
 
         <!-- Footer -->
     <footer class="py-5 bg-dark">
