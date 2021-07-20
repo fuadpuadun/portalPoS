@@ -68,10 +68,11 @@
                     <input type="password" class="form-control" placeholder="Konfirmasi Password" required="required">
                 </div>
                 <!--Tombol Register-->
-                <div class="form-group" >
+                <div class="form-group row" >
+                <label for="nl" class="col-sm-3 col-form-label"></label>
                     <button type="submit" class="btn  btn-block float-right">Register</button>
                 </div>
-                <div class="clearfix">
+                <div>
                     <p class="text-center">Sudah punya akun ? <a href="//renol">masuk</a> sekarang</p>
                 </div>        
             </form>
