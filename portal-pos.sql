@@ -8,34 +8,38 @@ CREATE TABLE IF NOT EXISTS umkm(
     UNSIGNED
     ZEROFILL
     NOT NULL,
-  email_umkm VARCHAR(254)
+  email VARCHAR(254)
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci
     NOT NULL,
-  password_umkm BINARY(32)
+  password VARCHAR(256)
+    CHARACTER SET ascii
+    COLLATE ascii_bin
     NOT NULL,
+  -- password_umkm BINARY(32)
+  --   NOT NULL,
   nama_umkm VARCHAR(120)
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci
     NOT NULL,
-  notelp_umkm VARCHAR(15)
+  notelp VARCHAR(15)
     CHARACTER SET ascii
     COLLATE ascii_bin
     NOT NULL,
-  alamat_umkm TEXT
+  alamat TEXT
     CHARACTER SET ascii
     COLLATE ascii_bin
     NOT NULL,
   PRIMARY KEY(id_umkm)
 ) ENGINE = InnoDB;
 
--- umkm(email_umkm) index
-CREATE OR REPLACE UNIQUE INDEX umkm_email_umkm_index
-ON umkm(email_umkm);
+-- umkm(email) index
+CREATE OR REPLACE UNIQUE INDEX umkm_email_index
+ON umkm(email);
 
--- umkm(notelp_umkm) index
-CREATE OR REPLACE INDEX umkm_notelp_umkm_index
-ON umkm(notelp_umkm);
+-- umkm(notelp) index
+CREATE OR REPLACE INDEX umkm_notelp_index
+ON umkm(notelp);
 
 -- barang
 CREATE TABLE IF NOT EXISTS barang(
@@ -117,3 +121,6 @@ CREATE TABLE IF NOT EXISTS penjualan(
     ON UPDATE CASCADE,
   PRIMARY KEY(id_transaksi, nama_barang)
 ) ENGINE = InnoDB;
+
+INSERT INTO `umkm` (`id_umkm`, `email`, `password`, `nama_umkm`, `notelp`, `alamat`)
+VALUES ('89', 'a@google.com', 'hello', 'a', '08001100999', 'a');
