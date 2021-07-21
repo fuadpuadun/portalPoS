@@ -38,7 +38,7 @@
     </head>
     <body>
         <div class="login-form">
-            <form action="/examples/actions/confirmation.php" method="post">
+            <form action="/home" method="post">
                 <h2 class="text-center">Login</h2>       
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Username" required="required">
@@ -47,11 +47,11 @@
                     <input type="password" class="form-control" placeholder="Password" required="required">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn  btn-block" >Login</button>
+                    <button type="submit" class="btn btn-block" >Login</button>
                 </div>
                 <div class="clearfix">
-                    <p class="text-center">Belum punya akun ? <a href="//renol">buat akun</a> sekarang</p>
-                </div>        
+                    <p class="text-center">Belum punya akun ? <a href="/register">buat akun</a> sekarang</p>
+                </div>
             </form>
         </div>
     </body>
