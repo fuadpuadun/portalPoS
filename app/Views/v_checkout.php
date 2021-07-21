@@ -1,29 +1,86 @@
 <?= $this->extend('v_template') ?>
 
 <?= $this->section('content') ?>
-
-<div class="container my-5">
-    <h3>Form Pembayaran</h3>
-    <hr>
-    <!--Form INSERT-->
-    <form action="<?php echo base_url('checkout/proses'); ?>" method="post">
-        <div class="form-group row">
-            <label for="jumlahJual" class="col-sm-3 col-form-label">Jumlah Penjualan</label>
-            <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama..." required autofocus>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>portalPoS - Login</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        
+        <style>
+            .login-form {
+                width: 600px;
+                margin: 50px auto;
+  	            font-size: 15px;
+            }
+            .login-form form {
+                margin-bottom: 15px;
+                background: #f7f7f7;
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                padding: 30px;
+            }
+            .login-form h2 {
+                margin: 0 0 15px;
+            }
+            .form-control, .btn {
+                width: 400px;
+                min-height: 40px;
+                border-radius: 2px;
+            }
+            .btn {        
+                font-size: 15px;
+                background-color:#58DD55; 
+                color: #FFFFFF;
+                border-radius: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="login-form">
+            <form action="/examples/actions/confirmation.php" method="post">
+                <h2 class="text-center">Pembayaran</h2>
+                <!--Isian-->      
+                <div class="form-group row">
+                    <label for="jumlah" class="col-sm-3 col-form-label">Jumlah Penjualan</label>
+                    <input type="text" class="form-control" placeholder="Nilai Penjualan" required="required">
+                </div>
+                <div class="form-group row">
+                    <label for="status" class="col-sm-3 col-form-label">Status Pembayaran</label>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">Belum Lunas</label>
+                    </div>
+                    <div class="form-check-inline">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">Default checked radio</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="uangpelanggan" class="col-sm-3 col-form-label">Uang Pelanggan</label>
+                    <input type="text" class="form-control" placeholder="Uang Pelanggan" required="required">
+                </div>
+                
+                <div class="form-group row">
+                    <label for="kembalian" class="col-sm-3 col-form-label">Kembalian</label>
+                    <input type="text" class="form-control" placeholder="Uang Pelanggan" required="required">
+                </div>
+                <div class="form-group row">
+                    <label for="keterangan" class="col-sm-3 col-form-label">Keterangan</label>
+                    <input type="text" class="form-control" placeholder="Keterangan" required="required">
+                </div>
+                <!--Tombol kembali & checkout-->
+                <div class="d-flex justify-content-sm-between">
+                    <a href="<?php echo base_url('invoice'); ?>" class="btn btn-primary"><i class="fa fa-angle-left"></i> Kembali</a>
+                    <a href="<?php echo base_url('invoice'); ?>" class="btn btn-primary">Pelunasan <i class="fa fa-angle-right"></i> </a>
+            </div>
         </div>
-        <div>
-            <!--radio box lunas / tidak lunas-->
-        </div>
-        <div class="form-group row">
-            <label for="uang" class="col-sm-3 col-form-label">Uang Pelanggan</label>
-            <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Email..." required autofocus>
-        </div>
-        <div class="form-group row">
-            <label for="kembalian" class="col-sm-3 col-form-label">Kembalian</label>
-            <input type="number" name="hp" class="form-control" id="hp" placeholder="+62..." required autofocus>
-        </div>
-        <button type="submit" class="btn btn-primary">Proses</button>
-    </form>
-</div>
+    </body>
+</html>
 
 <?= $this->endSection() ?>
