@@ -3,32 +3,24 @@
 <?= $this->section('content') ?>
 
 <div class="container my-5">
-    <h3>Sales</h3>
+    <h3>Penjualan</h3>
     <hr>
     <!--Tagihan-->
     <div class="table-responsive">
         <table class="table table-hover">
-            <thead class="bg-danger text-white">
-                <th>ID</th>
-                <th>TANGGAL</th>
-                <th>NAMA</th>
-                <th>Email</th>
-                <th>HP</th>
-                <th>HARGA PESANAN</th>
-                <th>STATUS PESANAN</th>
-                <th>DETAIL PESANAN</th>
-                <th></th>
+            <thead class="text-white" style="background-color:#2D58C7;">
+                <th>Tanggal & Waktu Transaksi</th>
+                <th>Jumlah Penjualan</th>
+                <th>Status Penjualan</th>
+                <th>Keterangan</th>
+                <th>Detail</th>
             </thead>
             <tbody>
                 <?php
                 if(isset($penjualan)){
                 foreach($penjualan as $key => $data) { ?>
                 <tr>
-                    <td><?php echo $data['idPenjualan']; ?></td>
                     <td><?php echo $data['tglTransaksi']; ?></td>
-                    <td><?php echo $data['nama']; ?></td>
-                    <td><?php echo $data['alamat']; ?></td>
-                    <td><?php echo $data['hp']; ?></td>
                     <td>Rp<?php echo format_rupiah($data['total']); ?>
                     <td><?php if($data['status_pemesanan'] == 1)
                     {
@@ -36,6 +28,7 @@
                     }
                     else{echo 'Belum Bayar';}
                     ?></td>
+                    <td>Borongan Tetangga</td>
                     <td><a href="<?php echo base_url('invoice/'.$data['idPenjualan']); ?>" class="btn btn-link"><i class="fas fa-eye"></i></a></td>
                 </tr>
                 <?php }} ?>

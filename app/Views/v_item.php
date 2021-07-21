@@ -34,7 +34,7 @@
                 <td><h5 class="text-dark"><?php echo $data['namabrg']; ?></h5></td> 
                 <td><h5 class="text-dark"><?php echo $data['stok']; ?></h5></td>
                 <td><h5 class="text-dark"><?php echo $data['harga']; ?></h5></td>
-                <td><a href="<?php echo base_url('addtocart/'.$data['kodebrg']); ?>" class="btn btn-primary" style="width:150px; border:none; background-color:#58DD55 !important;">Tambah <i class="fa fa-angle-right" ></i></a></td>
+                <td><a href="<?php echo base_url('addtocart/'.$data['kodebrg']); ?>" class="btn btn-primary" style=" border:none; background-color:#58DD55 !important;">Tambah ke Keranjang <i class="fa fa-angle-right" ></i></a></td>
             </tr>
             <?php
                 }
