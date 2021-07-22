@@ -31,9 +31,9 @@
                 <td class="align-middle"><a href="<?php echo base_url('removeitemcart/'); ?>" onclick="return confirm('Hapus barang?')" class="btn btn-danger btn-lg my-1"><i class="fa fa-trash"></i></a></td>
                 <td class="align-middle"><h5 class="text-dark"><?php echo $nama_barang; ?></h5></td>                
                 <td>
-                    <form method="post" action="<?php echo base_url('updatecart/'); ?>" class="form-group">
+                    <form method="POST" action="<?php echo base_url('cartref'), "?nama_barang=$nama_barang&harga_barang=$harga_barang&stok_barang=$stok_barang"; ?>" class="form-group">
                         <div class="input-group">
-                            <input type="number" class="form-control" min="1" max="<?php echo $stok_barang ?>" value="<?php echo $jumlah_barang; ?>" name="kuantitas">
+                            <input name="jumlah_barang" type="number" class="form-control" min="1" max="<?php echo $stok_barang ?>" value="<?php echo $jumlah_barang; ?>">
                             <button class="btn btn-link" type="submit" name="update"><i class="fa fa-sync-alt"></i></button>
                         </div>
                     </form>

@@ -38,6 +38,9 @@ $routes->get('/register', 'c_portal::register');
 $routes->add('/home', 'c_home::index');
 $routes->add('/item', 'c_home::item');
 $routes->add('/cart', 'c_home::cart');
+$routes->add('/cartref', 'c_home::cartref');
+$routes->add('/itemman', 'c_home::itemman');
+$routes->add('/sale', 'c_home::sale');
 
 /*
  * --------------------------------------------------------------------

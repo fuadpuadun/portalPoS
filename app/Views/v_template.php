@@ -44,10 +44,10 @@
                         <a class="nav-link" href= "<?php echo base_url('cart'); ?>">Keranjang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url(''); ?>">Laporan Penjualan</a>
+                        <a class="nav-link" href= "<?php echo base_url('itemman'); ?>">Kelola Barang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url(''); ?>">Kelola Barang</a>
+                        <a class="nav-link" href= "<?php echo base_url('sale'); ?>">Laporan Penjualan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href= "<?php echo base_url(''); ?>">Kelola Akun</a>
