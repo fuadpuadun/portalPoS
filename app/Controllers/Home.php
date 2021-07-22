@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use CodeIgniter\Controller;
 use App\Models\Account;
+use App\Models\Barang;
 
 class Home extends BaseController
 {
@@ -12,28 +12,21 @@ class Home extends BaseController
 		print_r($this->request->getVar());
 		$model = new Account();
 		if ($model->checkAccount('a@google.com', 'hello') == Account::SUCCESS)
-			return view('v_home');
+			return view('v_template');
 		else
 			return 'GAGAL';
 	}
 
-	public function acc()
+	public function item()
 	{
-		return view('v_acc_management');
-	}
-
-	public function add()
-	{
-		return view('v_add_item');
+		$model = new Barang();
+		$data = $model->getBarang('00000007', $this->request->getVar('keyword'));
+		return view('v_item', $data);
 	}
 
 	public function cart()
 	{
+		$session = session();
 		return view('v_cart');
-	}
-
-	public function checkout()
-	{
-		return view('v_checkout');
 	}
 }

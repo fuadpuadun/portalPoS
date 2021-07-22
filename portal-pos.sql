@@ -124,3 +124,5 @@ CREATE TABLE IF NOT EXISTS penjualan(
 
 INSERT INTO `umkm` (`id_umkm`, `email`, `password`, `nama_umkm`, `notelp`, `alamat`)
 VALUES ('89', 'a@google.com', 'hello', 'a', '08001100999', 'a');
+
+INSE
