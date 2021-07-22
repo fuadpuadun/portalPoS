@@ -6,7 +6,7 @@
     <h3>Barang</h3>
     <hr>
     <!--Search bar-->
-    <form method="GET" action="<?php echo base_url('home/item'); ?>" class="form-group">
+    <form method="GET" action="<?php echo base_url('item'); ?>" class="form-group">
         <div class="input-group mb-4 border rounded-pill p-1">
             <input name="keyword" type="text" placeholder="Mau cari apa..." class="form-control bg-none border-0 font-italic">
             <div class="input-group-append border-0">
@@ -22,6 +22,7 @@
                 <th style="width:35%">Nama Barang</th>
                 <th style="width:20%">Harga Barang</th>
                 <th style="width:25%">Stok Barang</th>
+                <th style="width:20%">Jumlah Barang</th>
                 <th style="width:20%"></th>
             </tr>
         </thead>
@@ -30,12 +31,25 @@
                 $formatter = new NumberFormatter('id_ID',  NumberFormatter::CURRENCY);
                 foreach ($this->data as $barang)
                 {
+                    $nama_barang = $barang['nama_barang'];
+                    $harga_barang = $barang['harga_barang'];
+                    $stok_barang = $barang['stok_barang'];
             ?>
             <tr>
-                <td><h5 class="text-dark"><?php echo $barang['nama_barang']; ?></h5></td> 
-                <td><h5 class="text-dark"><?php echo $formatter->formatCurrency($barang['harga_barang'], 'IDR'); ?></h5></td>
-                <td><h5 class="text-dark"><?php echo $barang['stok_barang']; ?></h5></td>
-                <td><a href="<?php echo base_url('home/cart'); ?>" class="btn btn-primary" style=" border:none; background-color:#58DD55 !important;">Tambah<i class="fa fa-angle-right" ></i></a></td>
+                <td><h5 class="text-dark"><?php echo $nama_barang; ?></h5></td>
+                <td><h5 class="text-dark"><?php echo $formatter->formatCurrency($harga_barang, 'IDR'); ?></h5></td>
+                <td><h5 class="text-dark"><?php echo $stok_barang; ?></h5></td>
+                <?php
+                    if ($stok_barang > 0)
+                    {
+                ?>
+                <td><a href="<?php echo base_url('cart'), "?nama_barang=$nama_barang&harga_barang=$harga_barang&stok_barang=$stok_barang"; ?>" class="btn btn-primary" style=" border:none; background-color:#58DD55 !important;">Tambah <i class="fa fa-angle-right" ></i></a></td>
+                <?php
+                    } else
+                    {
+                        echo '<td></td>';
+                    }
+                ?>
             </tr>
             <?php
                 }

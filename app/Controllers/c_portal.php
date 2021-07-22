@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Portal extends BaseController
+class c_portal extends BaseController
 {
 	public function index()
 	{
