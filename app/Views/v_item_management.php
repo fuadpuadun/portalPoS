@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 
 <div class="container my-5">
-    <h3>Kelola Produk</h3>
+    <h3>Kelola Barang</h3>
     <hr>
 
     <!--List Barang-->
@@ -42,12 +42,12 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                                <button type="button" class="btn btn-danger btn-ok">Hapus</button>
+                                <button type="button" class="btn btn-danger btn-ok" style=" border:none; background-color:#FF0000">Hapus</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <td><button class="btn btn-primary" data-record-id="54" data-record-title="Something cool" data-toggle="modal" data-target="#confirm-delete">Delete <i class="far fa-trash-alt" ></i></button></td>
+                <td><button class="btn btn-primary" style=" border:none; background-color:#FF0000" data-record-id="54" data-record-title="Something cool" data-toggle="modal" data-target="#confirm-delete">Hapus <i class="far fa-trash-alt" ></i></button></td>
             </tr>
             <?php
                 }
@@ -56,7 +56,7 @@
         <tfoot>
             <tr>
                 <td colspan="4"></td>
-                <td colspan="1"><a href="<?php echo base_url('additem'); ?>" class="btn btn-primary" style=" border:none; background-color:#2D58C7 !important;">Tambah Barang <i class="fas fa-plus" ></i></a></td></td>
+                <td colspan="1"><a href="<?php echo base_url('additem'); ?>" class="btn btn-primary" style=" border:none; background-color:#2D58C7">Tambah Barang <i class="fas fa-plus" ></i></a></td></td>
             </tr>
         </tfoot>
     </table>
