@@ -19,7 +19,7 @@
             <?php
             $subHarga = 0;
             $totalHarga = 0;
-            if(isset($barang)){
+            if(isset($barang)) {
             foreach($barang as $key => $data) {
                 $subHarga =  $data['harga'] * $data['kuantitas'];
                 $totalHarga = $totalHarga + $subHarga;
@@ -34,9 +34,9 @@
                             <button class="btn btn-link" type="submit" name="update"><i class="fa fa-sync-alt"></i></button>
                         </div>
                     </form>
-                </td>  
-                <td class="align-middle"><h5 class="text-dark">Rp<?php echo format_rupiah($data['harga']); ?></h5></td>
-                <td class="align-middle"> <h5 class="text-dark">Rp<?php echo format_rupiah($subHarga); ?></h5></td>
+                </td>
+                <td class="align-middle"><h5 class="text-dark">Rp<?php echo $data['harga']; ?></h5></td>
+                <td class="align-middle"> <h5 class="text-dark">Rp<?php echo $subHarga; ?></h5></td>
             </tr>
             <?php }} ?>
         </tbody>
@@ -44,7 +44,7 @@
             <tr>
                 <td colspan="2"><a  class="text-danger font-weight-bold" href="<?php echo base_url('clearcart'); ?>" onclick="return confirm('Hapus semua barang dalam keranjang?')" >Hapus Isi Keranjang</a></td>
                 <td colspan="2" class="text-right font-weight-bold">Total</td>
-                <td> <h5 class="font-weight-bold">Rp<?php echo format_rupiah($totalHarga); ?></h5></td>
+                <td> <h5 class="font-weight-bold">Rp<?php echo $totalHarga; ?></h5></td>
             </tr>
             <tr>
                 <td colspan="2"><a href="<?php echo base_url('beranda'); ?>" class="btn btn-primary" style=" border:none; background-color:#2D58C7 !important;"><i class="fa fa-angle-left"></i> Tambah produk</a>

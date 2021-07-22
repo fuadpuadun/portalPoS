@@ -36,8 +36,8 @@ $routes->get('/', 'Portal::index');
 $routes->get('/register', 'Portal::register');
 
 $routes->add('/home', 'Home::index');
-$routes->add('/home/acc', 'Home::acc');
-$routes->add('/home/add', 'Home::add');
+$routes->add('/home/item', 'Home::item');
+$routes->add('/home/cart', 'Home::cart');
 
 /*
  * --------------------------------------------------------------------

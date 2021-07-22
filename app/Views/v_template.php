@@ -21,8 +21,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
             <div class="container-fluid">
                 <a class="navbar-brand font-weight-bold" href="<?php echo base_url('beranda'); ?>">
-                    <img src="<?= base_url('web/logo.png') ?>" width="50" class="img-thumbnail">
-                    portalPoS
+                    <img src="" width="50" class="img-thumbnail">
+                    Portal PoS
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
@@ -30,13 +30,13 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url('beranda'); ?>">Beranda</a>
+                        <a class="nav-link" href= "<?php echo base_url('home'); ?>">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url('beranda'); ?>">Barang</a>
+                        <a class="nav-link" href= "<?php echo base_url('home/item'); ?>">Barang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url('keranjang'); ?>">Keranjang</a>
+                        <a class="nav-link" href= "<?php echo base_url('home/cart'); ?>">Keranjang</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href= "<?php echo base_url(''); ?>">Laporan Penjualan</a>
