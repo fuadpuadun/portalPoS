@@ -14,6 +14,14 @@
             .navbar {
                 background-color: #2D58C7;
             }
+
+            hr {
+                height: 5px;
+            }
+
+            footer {
+                background-color: #2D58C7;
+            }
         </style>
     </head>
     <body>
@@ -28,7 +36,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto ">
                     <li class="nav-item">
                         <a class="nav-link" href= "<?php echo base_url('beranda'); ?>">Barang</a>
                     </li>
@@ -57,7 +65,7 @@
         </div>
 
         <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5">
         <div class="container">
             <hr class="bg-secondary">
             <div class="col-md-12 text-center text-white">
