@@ -28,7 +28,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
             <div class="container-fluid">
-                <a class="navbar-brand font-weight-bold" href="<?php echo base_url('beranda'); ?>">
+                <a class="navbar-brand font-weight-bold" href="<?php echo base_url('item'); ?>">
                     <img src="<?= base_url('web/logo.png') ?>" width="50" class="img-thumbnail">
                     portalPoS
                 </a>
