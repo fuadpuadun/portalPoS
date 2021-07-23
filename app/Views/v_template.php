@@ -38,16 +38,16 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto ">
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url('beranda'); ?>">Barang</a>
+                        <a class="nav-link" href= "<?php echo base_url('item'); ?>">Barang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url('keranjang'); ?>">Keranjang</a>
+                        <a class="nav-link" href= "<?php echo base_url('cart'); ?>">Keranjang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url(''); ?>">Laporan Penjualan</a>
+                        <a class="nav-link" href= "<?php echo base_url('itemman'); ?>">Kelola Barang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url(''); ?>">Kelola Barang</a>
+                        <a class="nav-link" href= "<?php echo base_url('sale'); ?>">Laporan Penjualan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href= "<?php echo base_url(''); ?>">Kelola Akun</a>

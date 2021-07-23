@@ -20,16 +20,16 @@
                 if(isset($penjualan)){
                 foreach($penjualan as $key => $data) { ?>
                 <tr>
-                    <td><?php echo $data['tglTransaksi']; ?></td>
-                    <td>Rp<?php echo format_rupiah($data['total']); ?>
-                    <td><?php if($data['status_pemesanan'] == 1)
+                    <td><?php echo 'HELLO'; ?></td>
+                    <td>Rp<?php echo 'HELLO'; ?>
+                    <td><?php if(1 == 1)
                     {
                         echo 'Sudah Bayar';
                     }
                     else{echo 'Belum Bayar';}
                     ?></td>
                     <td>Borongan Tetangga</td>
-                    <td><a href="<?php echo base_url('invoice/'.$data['idPenjualan']); ?>" class="btn btn-link"><i class="fas fa-eye"></i></a></td>
+                    <td><a href="<?php echo base_url('invoice/'); ?>" class="btn btn-link"><i class="fas fa-eye"></i></a></td>
                 </tr>
                 <?php }} ?>
             </tbody>
