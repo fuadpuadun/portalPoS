@@ -12,12 +12,10 @@ CREATE TABLE IF NOT EXISTS umkm(
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci
     NOT NULL,
-  password VARCHAR(256)
+  password VARCHAR(60)
     CHARACTER SET ascii
     COLLATE ascii_bin
     NOT NULL,
-  -- password_umkm BINARY(32)
-  --   NOT NULL,
   nama_umkm VARCHAR(120)
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci
@@ -121,8 +119,3 @@ CREATE TABLE IF NOT EXISTS penjualan(
     ON UPDATE CASCADE,
   PRIMARY KEY(id_transaksi, nama_barang)
 ) ENGINE = InnoDB;
-
-INSERT INTO `umkm` (`id_umkm`, `email`, `password`, `nama_umkm`, `notelp`, `alamat`)
-VALUES ('89', 'a@google.com', 'hello', 'a', '08001100999', 'a');
-
-INSE
