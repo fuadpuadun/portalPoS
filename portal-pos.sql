@@ -119,3 +119,14 @@ CREATE TABLE IF NOT EXISTS penjualan(
     ON UPDATE CASCADE,
   PRIMARY KEY(id_transaksi, nama_barang)
 ) ENGINE = InnoDB;
+
+# dummy
+
+INSERT INTO `umkm` (`id_umkm`, `email`, `password`, `nama_umkm`, `notelp`, `alamat`)
+VALUES(03508763, 'admin', '$2y$10$MKHpq5mJEHqFOKmludJI.OxbnR3RRE5IQGeWdTrzGdPPqYw1ArlMW', 'Toko Admin', '08001100999', 'Jl. Haji Raya No. 20, Bandung, 40999');
+
+INSERT INTO `barang` (`id_umkm`, `nama_barang`, `harga_barang`, `stok_barang`)
+VALUES
+(03508763, 'Masker K94', '2990', 20),
+(03508763, 'Pensil 2B', '7000', 120),
+(03508763, 'Xiaomi Ear Buds 4.0', '395000', 17);
