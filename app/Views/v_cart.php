@@ -28,7 +28,7 @@
                     $sub_total = $item['harga_barang'] * $item['jumlah_barang'];
             ?>
             <tr>
-                <td class="align-middle"><a href="<?php echo base_url('removeitemcart/'); ?>" onclick="return confirm('Hapus barang?')" class="btn btn-danger btn-lg my-1"><i class="fa fa-trash"></i></a></td>
+                <td class="align-middle"><a href="<?php echo base_url('removeitemcart/'.$nama_barang); ?>" onclick="return confirm('Hapus barang?')" class="btn btn-danger btn-lg my-1"><i class="fa fa-trash"></i></a></td>
                 <td class="align-middle"><h5 class="text-dark"><?php echo $nama_barang; ?></h5></td>                
                 <td>
                     <form method="POST" action="<?php echo base_url('cartref'), "?nama_barang=$nama_barang&harga_barang=$harga_barang&stok_barang=$stok_barang"; ?>" class="form-group">
@@ -47,7 +47,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="2"><a class="text-danger font-weight-bold" href="<?php echo base_url('cart'), "hello"; ?>">Hapus Keranjang</a></td>
+                <td colspan="2"><a class="text-danger font-weight-bold" href="<?php echo base_url('clearcart'); ?>">Hapus Keranjang</a></td>
                 <td colspan="2" class="text-right font-weight-bold">Total</td>
                 <td> <h5 class="font-weight-bold">Rp<?php echo $total; ?></h5></td>
             </tr>

@@ -35,6 +35,9 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'c_portal::index');
 $routes->get('/register', 'c_portal::register');
 
+$routes->get('/removeitemcart/(:any)', 'c_home::removeItemCart/$1');
+$routes->get('/clearcart', 'c_home::clearCart');
+
 $routes->add('/home', 'c_home::index');
 $routes->add('/item', 'c_home::item');
 $routes->add('/cart', 'c_home::cart');

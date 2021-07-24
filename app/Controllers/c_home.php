@@ -69,6 +69,26 @@ class c_home extends BaseController
 		return view('v_cart', $data ? $data : []);
 	}
 
+	public function removeItemCart($nama_barang)
+	{
+		$session = session();
+
+		$cart = $session->get('cart');
+
+		if(isset($cart[$nama_barang])) {
+			unset($cart[$nama_barang]);
+			$session->set('cart', $cart);
+		}
+		return redirect()->to(base_url('cart'));
+	}
+
+	public function clearCart()
+	{
+		$session = session();
+		$session->remove('cart');
+        return redirect()->to(base_url('cart'));
+	}
+
 	public function itemman()
 	{
 		$model = new m_item();
@@ -82,4 +102,6 @@ class c_home extends BaseController
 		$data = $model->get_sale('00000007');
 		return view('v_sale');
 	}
+
+
 }
