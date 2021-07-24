@@ -10,66 +10,67 @@
         <thead class="text-white" style="background-color:#2D58C7;">
             <tr>
                 <th>Nama Barang</th>
-                <th>Jumlah</th>
+                <th>Jumlah Barang</th>
                 <th>Harga Satuan</th>
-                <th>Sub Harga</th>
+                <th>Subtotal</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            $subHarga = 0;
-            $subBerat = 0;
-            $totalHarga = 0;
-            $totalBerat = 0;
-            if(isset($jual)){
-            foreach($jual as $key => $data) {
-                $subHarga =  $data['harga'] * $data['jumlah'];
-                $subBerat =  $data['berat'] * $data['jumlah'];
-                $totalHarga = $totalHarga + $subHarga;
-                $totalBerat = $totalBerat + $subBerat;
-                ?>
+                $total = 0;
+                $formatter = new NumberFormatter('id_ID',  NumberFormatter::CURRENCY);
+                foreach ($this->data as $detail_transaksi)
+                {
+                    $subtotal = 0;
+                    $id_transaksi = $detail_transaksi['id_transaksi'];
+                    $nama_barang = $detail_transaksi['nama_barang'];
+                    $harga_barang = $detail_transaksi['harga_barang'];
+                    $jumlah_barang = $detail_transaksi['jumlah_barang'];
+                    $status_pembayaran = $detail_transaksi['status_pembayaran'] == 0 ? 'Belum Lunas' : 'Lunas';
+                    $keterangan = $detail_transaksi['keterangan'];
+                    $tanggal_waktu_transaksi = $detail_transaksi['tanggal_waktu_transaksi'];
+                    $subtotal = $harga_barang * $jumlah_barang;
+                    $total += $subtotal;
+            ?>
             <tr>
-                <td><?php echo $data['namabrg']; ?></td>                
-                <td><?php echo $data['jumlah']; ?> pcs</td>
-                <td>Rp<?php echo format_rupiah($data['harga']); ?></td>
-                <td>Rp<?php echo format_rupiah($subHarga); ?></td> 
+                <td><?= $nama_barang ?></td>                
+                <td><?= $jumlah_barang ?></td>
+                <td><?= $formatter->formatCurrency($harga_barang, 'IDR') ?></td>
+                <td><?= $formatter->formatCurrency($subtotal, 'IDR') ?></td> 
             </tr>
-            <?php }} ?>
+            <?php
+                }
+            ?>
         </tbody>
         <tfoot class="font-weight-bold">
             <tr>
-                <td colspan="3" class="text-right">Total Harga Barang</td>
-                <td>Rp<?php echo format_rupiah($totalHarga); ?></td>
-                <!--<td><?php echo $totalBerat; ?> kg</td>-->
+                <td colspan="3" class="text-right">Total</td>
+                <td><?= $formatter->formatCurrency($total, 'IDR') ?></td>
             </tr>
         </tfoot>
     </table>
+
     <!-- Atribut Penjualan -->
     <div class="card my-5 border-0 shadow-lg bg-white rounded">
         <div class="card-body">
             <hr>
             <form>
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Tanggal & Waktu Penjualan</label>
+                    <label class="col-sm-3 col-form-label">Tanggal & Waktu Transaksi</label>
                     <div class="col-sm-9">
-                        :&emsp;<?php echo $penjualan['tglTransaksi']?>
+                        :&emsp;<?= $tanggal_waktu_transaksi ?>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Status Penjualan</label>
+                    <label class="col-sm-3 col-form-label">Status Pembayaran</label>
                     <div class="col-sm-9">
-                        :&emsp;<?php if($penjualan['status_pemesanan'] == 1)
-                    {
-                        echo 'Sudah Lunas';
-                    }
-                    else{echo 'Belum Lunas';}
-                    ?>
+                        :&emsp;<?= $status_pembayaran ?>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Keterangan</label>
                     <div class="col-sm-9">
-                        :&emsp;<?php echo $penjualan['alamat']?>
+                        :&emsp;<?= $keterangan ?>
                     </div>
                 </div>
             </form>
@@ -77,9 +78,9 @@
     </div>
     <!-- Fitur -->
     <div class="d-flex justify-content-sm-between">
-        <a href="<?php echo base_url('invoice'); ?>" class="btn btn-primary"><i class="fa fa-angle-left"></i> Kembali</a>
+        <a href="<?= base_url('sale'); ?>" class="btn btn-primary"><i class="fa fa-angle-left"></i> Kembali</a>
         <!-- logic php kalau status belum bayar muncul tombol / jika sudah lunas tidak ada tombol -->
-        <a href="<?php echo base_url('invoice'); ?>" class="btn btn-primary">Pelunasan <i class="fa fa-angle-right"></i> </a>
+        <a href="<?= base_url('invoice'); ?>" class="btn btn-primary">Pelunasan <i class="fa fa-angle-right"></i> </a>
     </div>
 </div>
 

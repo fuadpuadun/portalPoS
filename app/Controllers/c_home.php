@@ -79,7 +79,15 @@ class c_home extends BaseController
 	public function sale()
 	{
 		$model = new m_sale();
-		$data = $model->get_sale('00000007');
-		return view('v_sale');
+		$data = $model->get_txn('00000007');
+		return view('v_sale', $data);
+	}
+
+	public function sale_detail()
+	{
+		$request = $this->request->getVar();
+		$model = new m_sale();
+		$data = $model->get_sale($request['id_transaksi']);
+		return view('v_sale_detail', $data);
 	}
 }
