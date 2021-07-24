@@ -3,6 +3,7 @@
 #-------------------------
 
 # Konfigurasi
+app/Config/Database.php
 
 # OS X
 .DS_Store
