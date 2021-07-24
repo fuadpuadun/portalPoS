@@ -90,4 +90,13 @@ class c_home extends BaseController
 		$data = $model->get_sale($request['id_transaksi']);
 		return view('v_sale_detail', $data);
 	}
+
+	public function sale_payoff()
+	{
+		$request = $this->request->getVar();
+		$model = new m_sale();
+		$model->payoff($request['id_transaksi']);
+		$data = $model->get_sale($request['id_transaksi']);
+		return view('v_sale_detail', $data);
+	}
 }

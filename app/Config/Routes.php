@@ -42,6 +42,7 @@ $routes->add('/cartref', 'c_home::cartref');
 $routes->add('/itemman', 'c_home::itemman');
 $routes->add('/sale', 'c_home::sale');
 $routes->add('/sale_detail', 'c_home::sale_detail');
+$routes->add('/sale_payoff', 'c_home::sale_payoff');
 
 /*
  * --------------------------------------------------------------------

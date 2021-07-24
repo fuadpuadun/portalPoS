@@ -80,7 +80,7 @@
     <div class="d-flex justify-content-sm-between">
         <a href="<?= base_url('sale'); ?>" class="btn btn-primary"><i class="fa fa-angle-left"></i> Kembali</a>
         <!-- logic php kalau status belum bayar muncul tombol / jika sudah lunas tidak ada tombol -->
-        <a href="<?= base_url('invoice'); ?>" class="btn btn-primary">Pelunasan <i class="fa fa-angle-right"></i> </a>
+        <a href="<?= base_url('sale_payoff'), "?id_transaksi=$id_transaksi" ?>" class="btn btn-primary">Pelunasan <i class="fa fa-angle-right"></i> </a>
     </div>
 </div>
 

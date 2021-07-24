@@ -42,4 +42,18 @@ class m_sale extends Model
         $db->close();
         return $result->getResultArray();
     }
+
+    public function payoff(string $id_transaksi)
+    {
+        $db = db_connect();
+        $sql = "UPDATE transaksi
+                SET status_pembayaran = 1
+                WHERE id_transaksi = '$id_transaksi'";
+        if (($result = $db->query($sql)) === null)
+        {
+            throw new Exception('Database: Sale terjadi kegagalan.', m_sale::SALE_FAILURE);
+        }
+        $db->close();
+        return true;
+    }
 }
