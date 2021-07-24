@@ -18,14 +18,15 @@
         <tbody>
             <?php
                 $total = 0;
-                $sub_total = 0;
                 $formatter = new NumberFormatter('id_ID',  NumberFormatter::CURRENCY);
                 foreach ($this->data as $nama_barang => $item)
                 {
+                    $sub_total = 0;
                     $harga_barang = $item['harga_barang'];
                     $stok_barang = $item['stok_barang'];
                     $jumlah_barang = $item['jumlah_barang'];
                     $sub_total = $item['harga_barang'] * $item['jumlah_barang'];
+                    $total += $sub_total;
             ?>
             <tr>
                 <td class="align-middle"><a href="<?php echo base_url('removeitemcart/'.$nama_barang); ?>" onclick="return confirm('Hapus barang?')" class="btn btn-danger btn-lg my-1"><i class="fa fa-trash"></i></a></td>
@@ -49,7 +50,7 @@
             <tr>
                 <td colspan="2"><a class="text-danger font-weight-bold" href="<?php echo base_url('clearcart'); ?>">Hapus Keranjang</a></td>
                 <td colspan="2" class="text-right font-weight-bold">Total</td>
-                <td> <h5 class="font-weight-bold">Rp<?php echo $total; ?></h5></td>
+                <td> <h5 class="font-weight-bold"><?php echo $formatter->formatCurrency($total, 'IDR'); ?></h5></td>
             </tr>
             <tr>
                 <td colspan="2"><a href="<?php echo base_url('item'); ?>" class="btn btn-primary" style=" border:none; background-color:#2D58C7 !important;"><i class="fa fa-angle-left"></i> Tambah produk</a>
