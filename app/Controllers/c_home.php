@@ -2,27 +2,20 @@
 
 namespace App\Controllers;
 
-use App\Models\m_account;
+use App\Models\m_signin;
 use App\Models\m_item;
 use App\Models\m_sale;
 
-class c_home extends BaseController
-{
-	public function index()
-	{
-		// print_r($this->request->getVar());
-		// $model = new Account();
-		// if ($model->checkAccount('a@google.com', 'hello') == Account::SUCCESS)
-		$model = new m_item();
-		$data = $model->get_barang('00000007');
-		return view('v_item', $data);
+class c_home extends BaseController {
+	private $signin;
+	protected $request;
+
+    function __construct() {
+        $this->signin = new m_signin();
 	}
 
-	public function item()
-	{
-		$model = new m_item();
-		$data = $model->get_barang('00000007', $this->request->getGet('keyword'));
-		return view('v_item', $data);
+	public function index() {
+		return redirect()->to(base_url('item'));
 	}
 
 	public function cart()
@@ -89,13 +82,6 @@ class c_home extends BaseController
         return redirect()->to(base_url('cart'));
 	}
 
-	public function itemman()
-	{
-		$model = new m_item();
-		$data = $model->get_barang('00000007', $this->request->getGet('keyword'));
-		return view('v_item_management', $data);
-	}
-
 	public function sale()
 	{
 		$model = new m_sale();
@@ -119,6 +105,4 @@ class c_home extends BaseController
 		$data = $model->get_sale($request['id_transaksi']);
 		return view('v_sale_detail', $data);
 	}
-
-
 }

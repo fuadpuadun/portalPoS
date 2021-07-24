@@ -2,29 +2,38 @@
 
 namespace App\Models;
 
+use App\Models\m_signin;
 use CodeIgniter\Model;
 use Exception;
 
-class m_item extends Model
-{
-    public const ITEM_FAILURE = 1;
-    
-    public function get_barang(string $id_umkm, string $keyword = null)
-    {
-        $db = db_connect();
-        if ($keyword === null)
-        {
-            $sql = "SELECT nama_barang, harga_barang, stok_barang FROM barang WHERE id_umkm = '$id_umkm' ORDER BY nama_barang ASC";
-        }
+class m_item extends Model {
+    private $signin;
+    private $database;
+
+    function __construct() {
+		$this->signin = new m_signin();
+        $this->database = db_connect();
+	}
+
+    public function getItems(string $keyword = null) {
+        $auth = $this->signin->getAuth();
+        $idUMKM = $auth['idUMKM'];
+        if( $keyword==null )
+            $sql = "SELECT nama_barang, harga_barang, stok_barang
+                    FROM barang
+                    WHERE id_umkm = '$idUMKM'
+                    ORDER BY nama_barang ASC";
         else
-        {
-            $sql = "SELECT nama_barang, harga_barang, stok_barang FROM barang WHERE id_umkm = '$id_umkm' AND nama_barang LIKE '%$keyword%' ORDER BY nama_barang ASC";
-        }
-        if (($result = $db->query($sql)) === null)
-        {
-            throw new Exception('Database: Query terjadi kegagalan.', m_item::ITEM_FAILURE);
-        }
-        $db->close();
+            $sql = "SELECT nama_barang, harga_barang, stok_barang
+                    FROM barang
+                    WHERE id_umkm = '$idUMKM'
+                    AND nama_barang LIKE '%$keyword%'
+                    ORDER BY nama_barang ASC";
+        $result = $this->database->query($sql);
         return $result->getResultArray();
+    }
+
+    function __destruct() {
+        $this->database->close();
     }
 }

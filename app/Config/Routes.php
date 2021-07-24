@@ -32,20 +32,43 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'c_portal::index');
-$routes->get('/register', 'c_portal::register');
 
-$routes->get('/removeitemcart/(:any)', 'c_home::removeItemCart/$1');
-$routes->get('/clearcart', 'c_home::clearCart');
+# Index
+$routes->add('/', 'c_home::index');
 
+# Beranda
 $routes->add('/home', 'c_home::index');
-$routes->add('/item', 'c_home::item');
+
+# Sign in
+$routes->add('/signin', 'c_signin::index');
+$routes->add('/signin/send', 'c_signin::send');
+
+# Sign up
+$routes->add('/signup', 'c_signup::index');
+$routes->add('/signup/send', 'c_signup::send');
+
+# Sign out
+$routes->add('/signout', 'c_signout::index');
+
+# Barang
+$routes->add('/item', 'c_item::index');
+$routes->add('/item/search', 'c_item::search');
+
+# Keranjang
+
+# Kelola Barang
+$routes->add('/manage', 'c_manage::manage');
+
+
 $routes->add('/cart', 'c_home::cart');
 $routes->add('/cartref', 'c_home::cartref');
 $routes->add('/itemman', 'c_home::itemman');
 $routes->add('/sale', 'c_home::sale');
 $routes->add('/sale_detail', 'c_home::sale_detail');
 $routes->add('/sale_payoff', 'c_home::sale_payoff');
+
+$routes->get('/removeitemcart/(:any)', 'c_home::removeItemCart/$1');
+$routes->get('/clearcart', 'c_home::clearCart');
 
 /*
  * --------------------------------------------------------------------

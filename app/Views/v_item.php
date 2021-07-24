@@ -6,7 +6,7 @@
     <h3>Barang</h3>
     <hr>
     <!--Search bar-->
-    <form method="GET" action="<?php echo base_url('item'); ?>" class="form-group">
+    <form method="get" action="<?= base_url('item/search'); ?>" class="form-group">
         <div class="input-group mb-4 border rounded-pill p-1">
             <input name="keyword" type="text" placeholder="Mau cari apa..." class="form-control bg-none border-0 font-italic">
             <div class="input-group-append border-0">
@@ -28,7 +28,7 @@
         </thead>
         <tbody>
             <?php
-                $formatter = new NumberFormatter('id_ID',  NumberFormatter::CURRENCY);
+                $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
                 foreach ($this->data as $barang)
                 {
                     $nama_barang = $barang['nama_barang'];
