@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 
 <div class="container my-5">
-    <h3>Penjualan</h3>
+    <h3>Laporan Penjualan</h3>
     <hr>
     <!--Tagihan-->
     <div class="table-responsive">

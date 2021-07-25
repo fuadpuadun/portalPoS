@@ -123,10 +123,26 @@ CREATE TABLE IF NOT EXISTS penjualan(
 # dummy
 
 INSERT INTO `umkm` (`id_umkm`, `email`, `password`, `nama_umkm`, `notelp`, `alamat`)
-VALUES(03508763, 'admin', '$2y$10$MKHpq5mJEHqFOKmludJI.OxbnR3RRE5IQGeWdTrzGdPPqYw1ArlMW', 'Toko Admin', '08001100999', 'Jl. Haji Raya No. 20, Bandung, 40999');
+VALUES
+(03508763, 'admin', '$2y$10$MKHpq5mJEHqFOKmludJI.OxbnR3RRE5IQGeWdTrzGdPPqYw1ArlMW', 'Toko Admin', '08001100999', 'Jl. Haji Raya No. 20, Bandung, 40999'),
+(05246073, 'ikan', '$2y$10$2MaR/cajmVD/5b66kDSbeeiVzDLOVDdXns0SaRb37WGt9PLxsyRTS', 'Toko Ikan', '08001100888', 'Jl. Haji Raya No. 20, Bandung, 40888');
 
 INSERT INTO `barang` (`id_umkm`, `nama_barang`, `harga_barang`, `stok_barang`)
 VALUES
-(03508763, 'Masker K94', '2990', 20),
+(03508763, 'Masker KF94', '2990', 25),
+(03508763, 'Masker KN95', '4999', 1298),
 (03508763, 'Pensil 2B', '7000', 120),
+(03508763, 'Windows 10 Pro', '3500000', 900),
 (03508763, 'Xiaomi Ear Buds 4.0', '395000', 17);
+
+INSERT INTO `umkm` (`id_umkm`, `email`, `password`, `nama_umkm`, `notelp`, `alamat`)
+VALUES
+(03508763, 'admin', '$2y$10$MKHpq5mJEHqFOKmludJI.OxbnR3RRE5IQGeWdTrzGdPPqYw1ArlMW', 'Toko Admin', '08001100999', 'Jl. Haji Raya No. 20, Bandung, 40999'),
+(05246073, 'ikan', '$2y$10$2MaR/cajmVD/5b66kDSbeeiVzDLOVDdXns0SaRb37WGt9PLxsyRTS', 'Toko Ikan', '08001100888', 'Jl. Haji Raya No. 20, Bandung, 40888');
+
+INSERT INTO `penjualan` (`id_transaksi`, `nama_barang`, `harga_barang`, `jumlah_barang`)
+VALUES
+(00000000000000639563, 'Pensil 2B', '7000', 3),
+(00000000000000639563, 'Windows 10 Pro', '7000', 1),
+(00000000000000639566, 'Windows 10 Pro', '3500000', 46),
+(00000000000000639566, 'Xiaomi Ear Buds 4.0', '395000', 46);

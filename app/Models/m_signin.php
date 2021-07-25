@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\m_utils;
 use CodeIgniter\Model;
-use Exception;
+use App\Models\m_utils;
 
 class m_signin extends Model {
     public const UNKNOWN_EMAIL = 0;
@@ -41,13 +40,14 @@ class m_signin extends Model {
                 WHERE email = '$email'";
         $result = $this->database->query($sql)->getResultArray();
         foreach($result as $row) {
-            $idUMKM = $row['id_umkm'];
+            $idUmkm = $row['id_umkm'];
             $hashedPassword = $row['password'];
         }
         $auth = [
-            'idUMKM' => $idUMKM,
+            'idUmkm' => $idUmkm,
             'email' => $email,
             'hashedPassword' => $hashedPassword,
+            'appSession' => []
         ];
         $this->session->set('auth', $auth);
     }
@@ -56,26 +56,46 @@ class m_signin extends Model {
         if( !$this->session->has('auth') )
             return false;
         $authSession = $this->session->get('auth');
-        $idUMKM = $authSession['idUMKM'];
+        $idUmkm = $authSession['idUmkm'];
         $email = $authSession['email'];
         $hashedPassword = $authSession['hashedPassword'];
         $sql = "SELECT id_umkm
                 FROM umkm
-                WHERE id_umkm = '$idUMKM'
+                WHERE id_umkm = '$idUmkm'
                 AND email = '$email'
                 AND password = '$hashedPassword'";
         $result = $this->database->simpleQuery($sql);
         return $result->num_rows!=0;
     }
 
+    public function setAuth($auth) {
+        $this->session->set('auth', $auth);
+    }
+
     public function getAuth() {
         return $this->session->get('auth');
+    }
+
+    public function setAppSession(string $key, $value) {
+        $auth = $this->getAuth();
+        $auth['appSession'] = [ $key => $value ];
+        $this->setAuth($auth);
+    }
+
+    public function getAppSession(string $key) {
+        $auth = $this->getAuth();
+        if( !isset($auth['appSession'][$key]) )
+            $auth['appSession'][$key] = null;
+        $appSession = $auth['appSession'][$key];
+        return $appSession;
     }
 
     // public function test() {
     //     $sql = "SELECT * FROM umkm";
     //     $result = $this->database->query($sql)->getNumRows();
-    //     print_r($result);
+    //     echo '<pre>';
+    //     var_export($result);
+    //     echo '</pre>';
     // }
 
     function __destruct() {

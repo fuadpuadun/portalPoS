@@ -18,7 +18,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Portal');
+$routes->setDefaultController('c_home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -55,20 +55,17 @@ $routes->add('/item', 'c_item::index');
 $routes->add('/item/search', 'c_item::search');
 
 # Keranjang
+$routes->add('/cart', 'c_cart::index');
+$routes->add('/cart/update', 'c_cart::update');
+$routes->add('/cart/delete', 'c_cart::delete');
 
 # Kelola Barang
 $routes->add('/manage', 'c_manage::manage');
 
-
-$routes->add('/cart', 'c_home::cart');
-$routes->add('/cartref', 'c_home::cartref');
-$routes->add('/itemman', 'c_home::itemman');
+# Laporan Penjualan
 $routes->add('/sale', 'c_home::sale');
 $routes->add('/sale_detail', 'c_home::sale_detail');
 $routes->add('/sale_payoff', 'c_home::sale_payoff');
-
-$routes->get('/removeitemcart/(:any)', 'c_home::removeItemCart/$1');
-$routes->get('/clearcart', 'c_home::clearCart');
 
 /*
  * --------------------------------------------------------------------

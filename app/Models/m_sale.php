@@ -18,7 +18,8 @@ class m_sale extends Model
                 transaksi.tanggal_waktu_transaksi
                 FROM transaksi
                 INNER JOIN penjualan
-                ON transaksi.id_transaksi = '$id_transaksi'";
+                ON (transaksi.id_transaksi = penjualan.id_transaksi
+                AND transaksi.id_transaksi = '$id_transaksi')";
         if (($result = $db->query($sql)) === null)
         {
             throw new Exception('Database: Sale terjadi kegagalan.', m_sale::SALE_FAILURE);

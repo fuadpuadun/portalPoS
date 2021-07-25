@@ -3,10 +3,8 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-use Exception;
 
 class m_utils extends Model {
-    # Sementara
     private const SALT = 'zP7jU*Aqf7HPkLht*(AdY+ebe*=9Pt/o';
 
     public static function hashedPassword(string $password) {

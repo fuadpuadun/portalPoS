@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 
 <div class="container my-5">
-    <h3>Sales Detail</h3>
+    <h3>Penjualan</h3>
     <hr>
     <!-- Barang -->
     <table class="table table-responsive-sm table-hover">
@@ -58,19 +58,19 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Tanggal & Waktu Transaksi</label>
                     <div class="col-sm-9">
-                        :&emsp;<?= $tanggal_waktu_transaksi ?>
+                        <?= $tanggal_waktu_transaksi ?>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Status Pembayaran</label>
                     <div class="col-sm-9">
-                        :&emsp;<?= $status_pembayaran ?>
+                        <?= $status_pembayaran ?>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Keterangan</label>
                     <div class="col-sm-9">
-                        :&emsp;<?= $keterangan ?>
+                        <?= $keterangan ?>
                     </div>
                 </div>
             </form>

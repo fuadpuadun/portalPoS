@@ -3,16 +3,16 @@
 namespace App\Controllers;
 
 use App\Models\m_signup;
+use App\Models\m_signin;
 
 class c_signup extends BaseController {
-	private $session;
 	private $signup;
+	private $signin;
 	protected $request;
 
 	function __construct() {
-		$this->session = session();
-		$this->session->start();
 		$this->signup = new m_signup();
+		$this->signin = new m_signin();
 	}
 
 	public function index() {
@@ -22,18 +22,19 @@ class c_signup extends BaseController {
 	public function send() {
 		$request = $this->request->getVar();
 		if( isset($request['email'], $request['password'],
-			$request['namaUMKM'], $request['noTelp'], $request['alamat']) ) {
+			$request['namaUmkm'], $request['noTelp'], $request['alamat']) ) {
 			$email = $request['email'];
 			$password = $request['password'];
-			$namaUMKM = $request['namaUMKM'];
+			$namaUmkm = $request['namaUmkm'];
 			$noTelp = $request['noTelp'];
 			$alamat = $request['alamat'];
-			if( $this->signup->saveAccount($namaUMKM,
+			if( $this->signup->saveAccount($namaUmkm,
 				$alamat, $noTelp, $email, $password) ) {
-				return 'BERHASIL';
+				$this->signin->loadAuth($email);
+				return redirect()->to(base_url('home'));
 			}
 		}
-		return 'GAGAL';
+		return redirect()->to(base_url('signup'));
 	}
 
 	function __destruct() {}
