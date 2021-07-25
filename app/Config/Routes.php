@@ -56,6 +56,7 @@ $routes->add('/item/search', 'c_item::search');
 
 # Keranjang
 $routes->add('/cart', 'c_cart::index');
+$routes->add('/cart/update', 'c_cart::update');
 
 # Kelola Barang
 $routes->add('/manage', 'c_manage::manage');
