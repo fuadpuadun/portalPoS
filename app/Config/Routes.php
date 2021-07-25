@@ -55,13 +55,14 @@ $routes->add('/item', 'c_item::index');
 $routes->add('/item/search', 'c_item::search');
 
 # Keranjang
+$routes->add('/cart', 'c_cart::index');
 
 # Kelola Barang
 $routes->add('/manage', 'c_manage::manage');
 
 
-$routes->add('/cart', 'c_home::cart');
-$routes->add('/cartref', 'c_home::cartref');
+// $routes->add('/cart', 'c_home::cart');
+// $routes->add('/cartref', 'c_home::cartref');
 $routes->add('/itemman', 'c_home::itemman');
 $routes->add('/sale', 'c_home::sale');
 $routes->add('/sale_detail', 'c_home::sale_detail');

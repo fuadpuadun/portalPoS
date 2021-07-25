@@ -5,13 +5,10 @@ namespace App\Controllers;
 use App\Models\m_signup;
 
 class c_signup extends BaseController {
-	private $session;
 	private $signup;
 	protected $request;
 
 	function __construct() {
-		$this->session = session();
-		$this->session->start();
 		$this->signup = new m_signup();
 	}
 
@@ -22,18 +19,17 @@ class c_signup extends BaseController {
 	public function send() {
 		$request = $this->request->getVar();
 		if( isset($request['email'], $request['password'],
-			$request['namaUMKM'], $request['noTelp'], $request['alamat']) ) {
+			$request['namaUmkm'], $request['noTelp'], $request['alamat']) ) {
 			$email = $request['email'];
 			$password = $request['password'];
-			$namaUMKM = $request['namaUMKM'];
+			$namaUmkm = $request['namaUmkm'];
 			$noTelp = $request['noTelp'];
 			$alamat = $request['alamat'];
-			if( $this->signup->saveAccount($namaUMKM,
-				$alamat, $noTelp, $email, $password) ) {
-				return 'BERHASIL';
-			}
+			if( $this->signup->saveAccount($namaUmkm,
+				$alamat, $noTelp, $email, $password) )
+				return redirect()->to(base_url('home'));
 		}
-		return 'GAGAL';
+		return redirect()->to(base_url('signup'));
 	}
 
 	function __destruct() {}

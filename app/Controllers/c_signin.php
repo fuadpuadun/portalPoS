@@ -24,20 +24,15 @@ class c_signin extends BaseController {
 			$password = $request['password'];
 			switch( $this->signin->verify($email, $password) ) {
 				case m_signin::UNKNOWN_EMAIL:
-					# Email tidak diketahui
 					return redirect()->to(base_url('signin'));
 				case m_signin::PASSWORD_FAILURE:
-					# Password salah
 					return redirect()->to(base_url('signin'));
-				case m_signin::PASSWORD_FAILURE:
-					# Akun gagal
+				case m_signin::ACCOUNT_FAILURE:
 					return redirect()->to(base_url('signin'));
 			}
-			# Berhasil
 			$this->signin->loadAuth($email);
 			return redirect()->to(base_url('home'));
 		}
-		# Gagal
 		return redirect()->to(base_url('signin'));
 	}
 
