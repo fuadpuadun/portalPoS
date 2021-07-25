@@ -3,13 +3,13 @@
 <?= $this->section('content') ?>
 
 <div class="container my-5">
-    <h3>Keranjang Belanja</h3>
+    <h3>Keranjang</h3>
     <hr>
     <table class="table table-responsive-sm">
         <thead class="text-white" style="background-color:#2D58C7;">
             <tr>
                 <th style="width:10%"></th>
-                <th style="width:35%">Nama Barang</th>
+                <th style="width:35%">Barang</th>
                 <th style="width:15%">Jumlah</th>
                 <th style="width:20%">Harga</th>
                 <th style="width:20%">Subtotal</th>
@@ -19,8 +19,7 @@
             <?php
                 $total = 0;
                 $formatter = new NumberFormatter('id_ID',  NumberFormatter::CURRENCY);
-                foreach ($this->data as $nama_barang => $item)
-                {
+                foreach ($this->data as $itemName => $item) {
                     $sub_total = 0;
                     $harga_barang = $item['harga_barang'];
                     $stok_barang = $item['stok_barang'];
