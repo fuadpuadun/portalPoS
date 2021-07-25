@@ -14,6 +14,8 @@ class c_signin extends BaseController {
 
 	public function index() {
 		// $this->signin->test();
+		if( $this->signin->verifyAuth() )
+			return redirect()->to(base_url('home'));
 		return view('v_signin');
 	}
 
