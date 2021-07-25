@@ -29,7 +29,7 @@
                     $total += $subTotal;
             ?>
             <tr>
-                <td class="align-middle"><a href="<?= base_url('removeitemcart/') ?>" class="btn btn-danger btn-lg my-1"><i class="fa fa-trash"></i></a></td>
+                <td class="align-middle"><a href="<?= base_url('cart/delete'), "?itemName=$itemName" ?>" class="btn btn-danger btn-lg my-1"><i class="fa fa-trash"></i></a></td>
                 <td class="align-middle"><h5 class="text-dark"><?php echo $itemName; ?></h5></td>                
                 <td>
                     <form method="get" action="<?= base_url('cart/update') ?>" class="form-group">
@@ -47,7 +47,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="2"><a class="text-danger font-weight-bold" href="<?= base_url('clearcart') ?>">Hapus Keranjang</a></td>
+                <td colspan="2"><a class="text-danger font-weight-bold" href="<?= base_url('cart/delete') ?>">Hapus Keranjang</a></td>
                 <td colspan="2" class="text-right font-weight-bold">Total</td>
                 <td> <h5 class="font-weight-bold"><?= $formatter->formatCurrency($total, 'IDR') ?></h5></td>
             </tr>

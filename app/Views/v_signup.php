@@ -44,7 +44,7 @@
                 <!--Isian-->      
                 <div class="form-group row">
                 <label for="staticNamaUMKM" class="col-sm-3 col-form-label">Nama UMKM</label>
-                    <input name="namaUMKM" type="text" class="form-control" placeholder="Nama UMKM" required="required">
+                    <input name="namaUmkm" type="text" class="form-control" placeholder="Nama UMKM" required="required">
                 </div>
                 <div class="form-group row">
                 <label for="staticAlamat" class="col-sm-3 col-form-label">Alamat</label>
