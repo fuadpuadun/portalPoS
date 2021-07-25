@@ -20,14 +20,14 @@ class m_cart extends Model {
 
     public function setCart(string $itemName, $itemAmount) {
         $cart = $cart = $this->signin->getAppSession('cart');
-        $cart[$itemName] = [ 'itemAmount' => $itemAmount ];
+        $cart[$itemName]['itemAmount'] = $itemAmount;
         $this->signin->setAppSession('cart', $cart);
     }
 
     public function addCart(string $itemName, $itemAmount) {
         $cart = $this->signin->getAppSession('cart');
         if( !isset($cart[$itemName]) )
-            $this->setCart($itemName, m_cart::DEFAULT_ITEM_AMOUNT);
+            $this->setCart($itemName, 0);
         $cart = $this->signin->getAppSession('cart');
         $cart[$itemName]['itemAmount'] += $itemAmount;
         $this->signin->setAppSession('cart', $cart);
@@ -36,9 +36,10 @@ class m_cart extends Model {
     public function getCart() {
         $auth = $this->signin->getAuth();
         $cart = $this->signin->getAppSession('cart');
+        $cart = $cart==null ? [] : $cart;
         $idUmkm = $auth['idUmkm'];
         $cartInfo = [
-            'cart' => null,
+            'cart' => [],
             'changed' => [],
         ];
         foreach($cart as $itemName => $itemInfo) {
@@ -59,17 +60,19 @@ class m_cart extends Model {
             $result = $result->getResultArray();
             foreach($result as $realItem) {
                 $realItemPrice = $realItem['harga_barang'];
-                $realItemStock = $realItem['stok_barang'];
+                $itemStock = $realItem['stok_barang'];
             }
-            if( $itemAmount>$realItemStock ) {
+            if( $itemAmount>$itemStock ) {
                 array_push($cartInfo['changed'], [
                     'itemName' => $itemName,
                     'code' => m_cart::ITEM_STOCK_DECREASED
                 ]);
-                $cart[$itemName]['itemAmount'] = $realItemStock;
+                $cart[$itemName]['itemAmount'] = $itemStock;
             }
             $cart[$itemName]['itemPrice'] = $realItemPrice;
+            $cart[$itemName]['itemStock'] = $itemStock;
         }
+        ksort($cart);
         $this->signin->setAppSession('cart', $cart);
         $cartInfo['cart'] = $cart;
         return $cartInfo;
