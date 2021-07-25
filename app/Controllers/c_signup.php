@@ -16,6 +16,8 @@ class c_signup extends BaseController {
 	}
 
 	public function index() {
+		if( $this->signin->verifyAuth() )
+			return redirect()->to(base_url('home'));
 		return view('v_signup');
 	}
 
