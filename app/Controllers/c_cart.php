@@ -25,7 +25,19 @@ class c_cart extends BaseController {
 			$itemName = $requestData['itemName'];
 			$this->cart->addCart($itemName, m_cart::DEFAULT_ITEM_AMOUNT);
 		}
-		$this->cart->getCart();
-		return 'HELLO';
+		$data = $this->cart->getCart();
+		return view('v_cart', $data);
+	}
+
+	public function update() {
+		if( !$this->signin->verifyAuth() )
+			return redirect()->to(base_url('signin'));
+		$requestData = $this->request->getVar();
+		if( isset($requestData['itemName'], $requestData['itemAmount']) ) {
+			$itemName = $requestData['itemName'];
+			$itemAmount = $requestData['itemAmount'];
+			$this->cart->setCart($itemName, $itemAmount);
+		}
+		return redirect()->to(base_url('cart'));
 	}
 }
