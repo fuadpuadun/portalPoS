@@ -40,4 +40,17 @@ class c_cart extends BaseController {
 		}
 		return redirect()->to(base_url('cart'));
 	}
+
+	public function delete() {
+		if( !$this->signin->verifyAuth() )
+			return redirect()->to(base_url('signin'));
+		$requestData = $this->request->getVar();
+		if( isset($requestData['itemName']) ) {
+			$itemName = $requestData['itemName'];
+			$this->cart->delCart($itemName);
+			return redirect()->to(base_url('cart'));
+		}
+		$this->cart->delCart();
+		return redirect()->to(base_url('cart'));
+	}
 }
