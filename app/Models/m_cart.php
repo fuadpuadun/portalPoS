@@ -78,6 +78,18 @@ class m_cart extends Model {
         return $cartInfo;
     }
 
+    public function delCart(string $itemName = null) {
+        if( $itemName!=null ) {
+            $cart = $this->signin->getAppSession('cart');
+            if( !isset($cart[$itemName]) )
+                return;
+            unset($cart[$itemName]);
+            $this->signin->setAppSession('cart', $cart);
+            return;
+        }
+        $this->signin->setAppSession('cart', []);
+    }
+
     function __destruct() {
         $this->database->close();
     }
