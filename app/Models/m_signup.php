@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\m_utils;
 use CodeIgniter\Model;
+use App\Models\m_utils;
 
 class m_signup extends Model {
     private const MIN_RANDOM = 0;
@@ -23,7 +23,7 @@ class m_signup extends Model {
         return $result->num_rows!=0;
     }
 
-    private function genID() {
+    private function genId() {
         do {
             $randomInt = random_int(m_signup::MIN_RANDOM, m_signup::MAX_RANDOM);
             $sql = "SELECT id_umkm
@@ -34,11 +34,11 @@ class m_signup extends Model {
         return $randomInt;
     }
 
-    public function saveAccount(string $namaUMKM,
+    public function saveAccount(string $namaUmkm,
         string $alamat, string $noTelp, string $email, string $password) {
         if( $this->emailExist($email) )
             return false;
-        $idUMKM = $this->genID();
+        $idUmkm = $this->genId();
         $hashedPassword = m_utils::hashedPassword($password);
         $sql = "INSERT INTO umkm(
                     id_umkm,
@@ -48,10 +48,10 @@ class m_signup extends Model {
                     notelp, alamat
                 )
                 VALUES(
-                    $idUMKM,
+                    $idUmkm,
                     '$email',
                     '$hashedPassword',
-                    '$namaUMKM',
+                    '$namaUmkm',
                     '$noTelp',
                     '$alamat'
                 )";

@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\m_signin;
 use CodeIgniter\Model;
-use Exception;
+use App\Models\m_signin;
 
 class m_item extends Model {
     private $signin;
@@ -17,16 +16,16 @@ class m_item extends Model {
 
     public function getItems(string $keyword = null) {
         $auth = $this->signin->getAuth();
-        $idUMKM = $auth['idUMKM'];
+        $idUmkm = $auth['idUmkm'];
         if( $keyword==null )
             $sql = "SELECT nama_barang, harga_barang, stok_barang
                     FROM barang
-                    WHERE id_umkm = '$idUMKM'
+                    WHERE id_umkm = '$idUmkm'
                     ORDER BY nama_barang ASC";
         else
             $sql = "SELECT nama_barang, harga_barang, stok_barang
                     FROM barang
-                    WHERE id_umkm = '$idUMKM'
+                    WHERE id_umkm = '$idUmkm'
                     AND nama_barang LIKE '%$keyword%'
                     ORDER BY nama_barang ASC";
         $result = $this->database->query($sql);
