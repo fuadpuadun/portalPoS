@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <?= $this->extend('v_template') ?>
 
 <?= $this->section('content') ?>
@@ -27,15 +29,15 @@
                     $stok_barang = $barang['stok_barang'];
             ?>
             <tr>
-                <td><h5 class="text-dark"><?php echo $nama_barang; ?></h5></td>
+                <td><h5 class="text-danger"><?php echo $nama_barang; ?></h5></td>
                 <td><h5 class="text-dark"><?php echo $harga_barang; ?></h5></td>
                 <td><h5 class="text-dark"><?php echo $stok_barang; ?></h5></td>
                 <!-- Trigger Update -->
-                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="confirm-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Update Barang</h4>
+                                <h4 class="modal-title" id="myModalLabel">Ubah Data Barang</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
@@ -51,11 +53,11 @@
                 </div>
                 <td><button class="btn btn-primary" style=" border:none; background-color:#676767 !important;" data-record-id="54" data-record-title="Something cool" data-toggle="modal" data-target="#confirm-delete">Ubah <i class="far fa-edit" ></i></button></td>
                 <!-- Trigger Delete -->
-                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Konfirmasi Hapus Barang</h4>
+                                <h4 class="modal-title" id="modalHapus">Konfirmasi Hapus Barang</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
@@ -79,11 +81,11 @@
             <tr>
                 <td colspan="4"></td>
                 <!-- Trigger Tambah Barang -->
-                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="confirm-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Tambah Barang</h4>
+                                <h4 class="modal-title" id="modalAdd">Tambah Barang</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
@@ -104,3 +106,4 @@
 </div>
 
 <?= $this->endSection() ?>
+</html>
