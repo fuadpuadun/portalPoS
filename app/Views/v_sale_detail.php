@@ -18,7 +18,8 @@
         <tbody>
             <?php
                 $total = 0;
-                $formatter = new NumberFormatter('id_ID',  NumberFormatter::CURRENCY);
+                $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+                $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
                 foreach($this->data as $txn) {
                     $subTotal = 0;
                     $txnId = $txn['id_transaksi'];

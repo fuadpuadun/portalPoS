@@ -17,7 +17,8 @@
             </thead>
             <tbody>
                 <?php
-                    $formatter = new NumberFormatter('id_ID',  NumberFormatter::CURRENCY);
+                    $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+                    $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
                     foreach($this->data as $txn) {
                         $txnId = $txn['id_transaksi'];
                         $paymentStatus = $txn['status_pembayaran'];
