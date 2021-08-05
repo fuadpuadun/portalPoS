@@ -30,18 +30,19 @@ class Database extends Config
 	 *
 	 * @var array
 	 */
+	const BUKAN_LINUX = strtoupper(substr(PHP_OS, 0, 3))==='WIN';
 	public $default = [
 		'DSN'      => '',
-		'hostname' => 'localhost',
+		'hostname' => Database::BUKAN_LINUX ? 'localhost' : '0.0.0.0',
 		'username' => 'root',
-		'password' => '',
+		'password' => Database::BUKAN_LINUX ? '' : 'root',
 		'database' => 'pos',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,
 		'DBDebug'  => (ENVIRONMENT !== 'production'),
 		'charset'  => 'utf8',
-		'DBCollat' => 'utf8_general_ci',
+		'DBCollat' => 'utf8_unicode_ci',
 		'swapPre'  => '',
 		'encrypt'  => false,
 		'compress' => false,
@@ -67,7 +68,7 @@ class Database extends Config
 		'pConnect' => false,
 		'DBDebug'  => (ENVIRONMENT !== 'production'),
 		'charset'  => 'utf8',
-		'DBCollat' => 'utf8_general_ci',
+		'DBCollat' => 'utf8_unicode_ci',
 		'swapPre'  => '',
 		'encrypt'  => false,
 		'compress' => false,

@@ -55,6 +55,9 @@ CREATE TABLE IF NOT EXISTS barang(
   stok_barang SMALLINT
     UNSIGNED
     NULL,
+  stok_minimal SMALLINT
+    UNSIGNED
+    NULL,
   CONSTRAINT barang_umkm_fk
     FOREIGN KEY(id_umkm)
     REFERENCES umkm(id_umkm)
@@ -127,13 +130,13 @@ VALUES
 (03508763, 'admin', '$2y$10$MKHpq5mJEHqFOKmludJI.OxbnR3RRE5IQGeWdTrzGdPPqYw1ArlMW', 'Toko Admin', '08001100999', 'Jl. Haji Raya No. 20, Bandung, 40999'),
 (05246073, 'ikan', '$2y$10$2MaR/cajmVD/5b66kDSbeeiVzDLOVDdXns0SaRb37WGt9PLxsyRTS', 'Toko Ikan', '08001100888', 'Jl. Haji Raya No. 20, Bandung, 40888');
 
-INSERT INTO `barang` (`id_umkm`, `nama_barang`, `harga_barang`, `stok_barang`)
+INSERT INTO `barang` (`id_umkm`, `nama_barang`, `harga_barang`, `stok_barang`, `stok_minimal`)
 VALUES
-(03508763, 'Masker KF94', '2990', 25),
-(03508763, 'Masker KN95', '4999', 1298),
-(03508763, 'Pensil 2B', '7000', 120),
-(03508763, 'Windows 10 Pro', '3500000', 900),
-(03508763, 'Xiaomi Ear Buds 4.0', '395000', 17);
+(03508763, 'Masker KF94', '2990', 25, 4),
+(03508763, 'Masker KN95', '4999', 1298, 100),
+(03508763, 'Pensil 2B', '7000', 120, 1),
+(03508763, 'Windows 10 Pro', '3500000', 900, 17),
+(03508763, 'Xiaomi Ear Buds 4.0', '395000', 17, 0);
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_umkm`, `status_pembayaran`, `keterangan`, `tanggal_waktu_transaksi`)
 VALUES
