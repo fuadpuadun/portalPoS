@@ -12,9 +12,9 @@
     <table class="table table-responsive-sm">
         <thead class="text-white" style="background-color:#2D58C7;">
             <tr>
-                <th style="width:30%">Nama Barang</th>
-                <th style="width:15%">Harga Barang</th>
-                <th style="width:20%">Jumlah Barang</th>
+                <th style="width:30%">Barang</th>
+                <th style="width:15%">Harga</th>
+                <th style="width:20%">Stok</th>
                 <th style="width:15%"></th>
                 <th style="width:20%"></th>
             </tr>
@@ -22,16 +22,16 @@
         <tbody>
             <?php
                 $formatter = new NumberFormatter('id_ID',  NumberFormatter::CURRENCY);
-                foreach ($this->data as $barang)
-                {
-                    $nama_barang = $barang['nama_barang'];
-                    $harga_barang = $barang['harga_barang'];
-                    $stok_barang = $barang['stok_barang'];
+                foreach($this->data as $barang) {
+                    $itemName = $barang['nama_barang'];
+                    $itemPrice = $barang['harga_barang'];
+                    $itemStock = $barang['stok_barang'];
+                    $itemMinStock = $barang['stok_minimal'];
             ?>
             <tr>
-                <td><h5 class="text-danger"><?php echo $nama_barang; ?></h5></td>
-                <td><h5 class="text-dark"><?php echo $harga_barang; ?></h5></td>
-                <td><h5 class="text-dark"><?php echo $stok_barang; ?></h5></td>
+                <td><h5 class="<?= $itemStock<=$itemMinStock ? 'text-danger' : 'text-dark' ?>"><?= $itemName ?></h5></td>
+                <td><h5 class="text-dark"><?= $itemPrice ?></h5></td>
+                <td><h5 class="text-dark"><?= $itemStock ?></h5></td>
                 <!-- Trigger Update -->
                 <div class="modal fade" id="confirm-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -73,9 +73,7 @@
                 </div>
                 <td><button class="btn btn-primary" style=" border:none; background-color:#FF0000" data-record-id="54" data-record-title="Something cool" data-toggle="modal" data-target="#confirm-delete">Hapus <i class="far fa-trash-alt" ></i></button></td>
             </tr>
-            <?php
-                }
-                ?>
+            <?php } ?>
         </tbody>
         <tfoot>
             <tr>

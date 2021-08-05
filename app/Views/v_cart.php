@@ -29,7 +29,7 @@
                     $total += $subTotal;
             ?>
             <tr>
-                <td class="align-middle"><a href="<?= base_url('cart/delete'), "?itemName=$itemName" ?>" class="btn btn-danger btn-lg my-1"><i class="fa fa-trash"></i></a></td>
+                <td class="align-middle"><a href="<?= base_url('cart/delete')."?itemName=$itemName" ?>" class="btn btn-danger btn-lg my-1"><i class="fa fa-trash"></i></a></td>
                 <td class="align-middle"><h5 class="text-dark"><?php echo $itemName; ?></h5></td>                
                 <td>
                     <form method="get" action="<?= base_url('cart/update') ?>" class="form-group">
