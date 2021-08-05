@@ -44,6 +44,8 @@ class m_cart extends Model {
             'cart' => [],
             'changed' => [],
         ];
+        if( empty($cart) )
+            return $cartInfo;
         foreach($cart as $itemName => $itemInfo) {
             $itemAmount = $itemInfo['itemAmount'];
             $sql = "SELECT harga_barang, stok_barang
@@ -127,6 +129,8 @@ class m_cart extends Model {
     public function release(int $paymentStatus, string $description) {
         $auth = $this->signin->getAuth();
         $cart = $this->signin->getAppSession('cart');
+        if( empty($cart) )
+            return null;
         $idUmkm = $auth['idUmkm'];
         $this->database->simpleQuery("BEGIN");
         foreach($cart as $itemName => $itemInfo) {
