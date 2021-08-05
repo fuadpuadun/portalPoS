@@ -132,6 +132,8 @@ VALUES
 
 INSERT INTO `barang` (`id_umkm`, `nama_barang`, `harga_barang`, `stok_barang`, `stok_minimal`)
 VALUES
+(03508763, 'Jamur Penyembuh', '120000', 0, 7),
+(03508763, 'Kulit Kelinci', '55000', 3, 3),
 (03508763, 'Masker KF94', '2990', 25, 4),
 (03508763, 'Masker KN95', '4999', 1298, 100),
 (03508763, 'Pensil 2B', '7000', 120, 1),
@@ -140,12 +142,12 @@ VALUES
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_umkm`, `status_pembayaran`, `keterangan`, `tanggal_waktu_transaksi`)
 VALUES
-(00000000000000639563, 03508763, 1, 'Oryzomys dimidiatus, also known as the Nicaraguan oryzomys, Thomas\'s rice rat, or the Nicaraguan rice rat, is a rodent in the genus Oryzomys of the family Cricetidae. It is known from only three specimens, all collected in southeastern Nicaragua (range pictured) since 1904.', '2021-07-25 10:53:10'),
+(00000000000000639563, 03508763, 0, 'Oryzomys dimidiatus, also known as the Nicaraguan oryzomys, Thomas\'s rice rat, or the Nicaraguan rice rat, is a rodent in the genus Oryzomys of the family Cricetidae. It is known from only three specimens, all collected in southeastern Nicaragua (range pictured) since 1904.', '2021-07-25 10:53:10'),
 (00000000000000639566, 03508763, 1, 'The Castle of St John the Baptist, also called the Black Castle, is a circular fort in Santa Cruz de Tenerife in the Canary Islands. It is located in the heart of the city, near the Parque Marítimo César Manrique and behind the Auditorio de Tenerife. Construction began in 1641 and was completed in 1644.', '2021-07-25 10:53:10');
 
 INSERT INTO `penjualan` (`id_transaksi`, `nama_barang`, `harga_barang`, `jumlah_barang`)
 VALUES
 (00000000000000639563, 'Pensil 2B', '7000', 3),
-(00000000000000639563, 'Windows 10 Pro', '7000', 1),
+(00000000000000639563, 'Kulit Kelinci', '55000', 2),
 (00000000000000639566, 'Windows 10 Pro', '3500000', 46),
 (00000000000000639566, 'Xiaomi Ear Buds 4.0', '395000', 46);
