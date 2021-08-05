@@ -9,8 +9,8 @@
     <table class="table table-responsive-sm table-hover">
         <thead class="text-white" style="background-color:#2D58C7;">
             <tr>
-                <th>Nama Barang</th>
-                <th>Jumlah Barang</th>
+                <th>Barang</th>
+                <th>Jumlah</th>
                 <th>Harga Satuan</th>
                 <th>Subtotal</th>
             </tr>
@@ -19,28 +19,25 @@
             <?php
                 $total = 0;
                 $formatter = new NumberFormatter('id_ID',  NumberFormatter::CURRENCY);
-                foreach ($this->data as $detail_transaksi)
-                {
-                    $subtotal = 0;
-                    $id_transaksi = $detail_transaksi['id_transaksi'];
-                    $nama_barang = $detail_transaksi['nama_barang'];
-                    $harga_barang = $detail_transaksi['harga_barang'];
-                    $jumlah_barang = $detail_transaksi['jumlah_barang'];
-                    $status_pembayaran = $detail_transaksi['status_pembayaran'] == 0 ? 'Belum Lunas' : 'Lunas';
-                    $keterangan = $detail_transaksi['keterangan'];
-                    $tanggal_waktu_transaksi = $detail_transaksi['tanggal_waktu_transaksi'];
-                    $subtotal = $harga_barang * $jumlah_barang;
-                    $total += $subtotal;
+                foreach($this->data as $txn) {
+                    $subTotal = 0;
+                    $txnId = $txn['id_transaksi'];
+                    $itemName = $txn['nama_barang'];
+                    $itemPrice = $txn['harga_barang'];
+                    $itemAmount = $txn['jumlah_barang'];
+                    $paymentStatus = $txn['status_pembayaran'];
+                    $itemDescription = $txn['keterangan'];
+                    $txnDateTime = $txn['tanggal_waktu_transaksi'];
+                    $subTotal = $itemPrice*$itemAmount;
+                    $total += $subTotal;
             ?>
             <tr>
-                <td><?= $nama_barang ?></td>                
-                <td><?= $jumlah_barang ?></td>
-                <td><?= $formatter->formatCurrency($harga_barang, 'IDR') ?></td>
-                <td><?= $formatter->formatCurrency($subtotal, 'IDR') ?></td> 
+                <td><?= $itemName ?></td>                
+                <td><?= $itemAmount ?></td>
+                <td><?= $formatter->formatCurrency($itemPrice, 'IDR') ?></td>
+                <td><?= $formatter->formatCurrency($subTotal, 'IDR') ?></td> 
             </tr>
-            <?php
-                }
-            ?>
+            <?php } ?>
         </tbody>
         <tfoot class="font-weight-bold">
             <tr>
@@ -58,19 +55,19 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Tanggal & Waktu Transaksi</label>
                     <div class="col-sm-9">
-                        <?= $tanggal_waktu_transaksi ?>
+                        <?= $txnDateTime ?>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Status Pembayaran</label>
                     <div class="col-sm-9">
-                        <?= $status_pembayaran ?>
+                        <?= $paymentStatus==0 ? 'Belum Lunas' : 'Lunas' ?>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Keterangan</label>
                     <div class="col-sm-9">
-                        <?= $keterangan ?>
+                        <?= $itemDescription ?>
                     </div>
                 </div>
             </form>
@@ -78,9 +75,11 @@
     </div>
     <!-- Fitur -->
     <div class="d-flex justify-content-sm-between">
-        <a href="<?= base_url('sale'); ?>" class="btn btn-primary"><i class="fa fa-angle-left"></i> Kembali</a>
+        <a href="<?= base_url('sale') ?>" class="btn btn-primary"><i class="fa fa-angle-left"></i> Kembali</a>
         <!-- logic php kalau status belum bayar muncul tombol / jika sudah lunas tidak ada tombol -->
-        <a href="<?= base_url('sale_payoff'), "?id_transaksi=$id_transaksi" ?>" class="btn btn-primary">Pelunasan <i class="fa fa-angle-right"></i> </a>
+        <?php if( $paymentStatus==0 ) { ?>
+        <a href="<?= base_url('sale/payoff')."?txnId=$txnId" ?>" class="btn btn-primary">Pelunasan <i class="fa fa-angle-right"></i> </a>
+        <?php } ?>
     </div>
 </div>
 

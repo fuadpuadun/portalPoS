@@ -58,15 +58,16 @@ $routes->add('/item/search', 'c_item::search');
 $routes->add('/cart', 'c_cart::index');
 $routes->add('/cart/update', 'c_cart::update');
 $routes->add('/cart/delete', 'c_cart::delete');
+$routes->add('/cart/checkout', 'c_cart::checkout');
 
 # Kelola Barang
 $routes->add('/manage', 'c_manage::manage');
 $routes->add('/delete', 'c_manage::delete');
 
 # Laporan Penjualan
-$routes->add('/sale', 'c_home::sale');
-$routes->add('/sale_detail', 'c_home::sale_detail');
-$routes->add('/sale_payoff', 'c_home::sale_payoff');
+$routes->add('/sale', 'c_sale::index');
+$routes->add('/sale/detail', 'c_sale::detail');
+$routes->add('/sale/payoff', 'c_sale::payoff');
 
 /*
  * --------------------------------------------------------------------

@@ -15,4 +15,6 @@ class c_signout extends BaseController {
 		$this->signout->delSession();
 		return redirect()->to(base_url('signin'));
 	}
+
+	function __destruct() {}
 }

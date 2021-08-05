@@ -28,11 +28,11 @@
         </thead>
         <tbody>
             <?php
-            $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
-            foreach ($this->data as $item) {
-                $itemName = $item['nama_barang'];
-                $itemPrice = $item['harga_barang'];
-                $itemStock = $item['stok_barang'];
+                $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+                foreach ($this->data as $item) {
+                    $itemName = $item['nama_barang'];
+                    $itemPrice = $item['harga_barang'];
+                    $itemStock = $item['stok_barang'];
             ?>
                 <tr>
                     <td>
@@ -44,15 +44,11 @@
                     <td>
                         <h5 class="text-dark"><?= $itemStock; ?></h5>
                     </td>
-                    <?php if( $itemStock>0 ) { ?>
-                        <td>
-                            <a href="<?= base_url('cart'), "?itemName=$itemName"; ?>" class="btn btn-primary" style=" border:none; background-color:#58DD55 !important;">Tambah <i class="fa fa-angle-right"></i></a>
-                        </td>
-                    <?php } ?>
+                    <td>
+                        <a href="<?= base_url('cart')."?itemName=$itemName"; ?>" class="btn btn-primary" style=" border:none; background-color:#58DD55 !important;">Tambah <i class="fa fa-angle-right"></i></a>
+                    </td>
                 </tr>
-            <?php
-            }
-            ?>
+            <?php } ?>
         </tbody>
     </table>
 

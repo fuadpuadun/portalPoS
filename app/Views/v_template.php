@@ -8,7 +8,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-
         <style>
             .navbar {
                 background-color: #2D58C7;
@@ -27,9 +26,8 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
             <div class="container-fluid">
-                <a class="navbar-brand font-weight-bold" href="<?php echo base_url('item'); ?>">
-                    <img src="<?= base_url('web/logo.png') ?>" width="50" class="img-thumbnail">
-                    portalPoS
+                <a class="navbar-brand font-weight-bold" href="<?= base_url() ?>">
+                    <img src="default-logo/portal-pos.jpg" width="50" class="img-thumbnail"> Portal PoS
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
@@ -37,22 +35,22 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto ">
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url('item'); ?>">Barang</a>
+                        <a class="nav-link" href= "<?= base_url('item') ?>">Barang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url('cart'); ?>">Keranjang</a>
+                        <a class="nav-link" href= "<?= base_url('cart') ?>">Keranjang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url('manage'); ?>">Kelola Barang</a>
+                        <a class="nav-link" href= "<?= base_url('manage') ?>">Kelola Barang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url('sale'); ?>">Laporan Penjualan</a>
+                        <a class="nav-link" href= "<?= base_url('sale') ?>">Laporan Penjualan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url(''); ?>">Kelola Akun</a>
+                        <a class="nav-link" href= "<?= base_url('') ?>">Kelola Akun</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href= "<?php echo base_url('signout'); ?>">Keluar</a>
+                        <a class="nav-link" href= "<?= base_url('signout') ?>">Keluar</a>
                     </li>
                 </ul>
             </div>

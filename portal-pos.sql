@@ -1,4 +1,5 @@
 -- pos
+DROP DATABASE IF EXISTS pos;
 CREATE DATABASE IF NOT EXISTS pos;
 USE pos;
 
@@ -6,13 +7,12 @@ USE pos;
 CREATE TABLE IF NOT EXISTS umkm(
   id_umkm MEDIUMINT(8)
     UNSIGNED
-    ZEROFILL
     NOT NULL,
   email VARCHAR(254)
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci
     NOT NULL,
-  password VARCHAR(60)
+  password CHAR(60)
     CHARACTER SET ascii
     COLLATE ascii_bin
     NOT NULL,
@@ -43,7 +43,6 @@ ON umkm(notelp);
 CREATE TABLE IF NOT EXISTS barang(
   id_umkm MEDIUMINT(8)
     UNSIGNED
-    ZEROFILL
     NOT NULL,
   nama_barang VARCHAR(120)
     CHARACTER SET utf8mb4
@@ -69,11 +68,10 @@ CREATE TABLE IF NOT EXISTS barang(
 -- transaksi
 CREATE TABLE IF NOT EXISTS transaksi(
   id_transaksi BIGINT(20)
-    ZEROFILL
+    UNSIGNED
     NOT NULL,
   id_umkm MEDIUMINT(8)
     UNSIGNED
-    ZEROFILL
     NOT NULL,
   status_pembayaran BOOLEAN
     NULL,
@@ -103,7 +101,7 @@ ON transaksi(tanggal_waktu_transaksi);
 -- penjualan
 CREATE TABLE IF NOT EXISTS penjualan(
   id_transaksi BIGINT(20)
-    ZEROFILL
+    UNSIGNED
     NOT NULL,
   nama_barang VARCHAR(120)
     CHARACTER SET utf8mb4
@@ -125,27 +123,25 @@ CREATE TABLE IF NOT EXISTS penjualan(
 
 # dummy
 
-INSERT INTO `umkm` (`id_umkm`, `email`, `password`, `nama_umkm`, `notelp`, `alamat`)
-VALUES
-(03508763, 'admin', '$2y$10$MKHpq5mJEHqFOKmludJI.OxbnR3RRE5IQGeWdTrzGdPPqYw1ArlMW', 'Toko Admin', '08001100999', 'Jl. Haji Raya No. 20, Bandung, 40999'),
-(05246073, 'ikan', '$2y$10$2MaR/cajmVD/5b66kDSbeeiVzDLOVDdXns0SaRb37WGt9PLxsyRTS', 'Toko Ikan', '08001100888', 'Jl. Haji Raya No. 20, Bandung, 40888');
+INSERT INTO umkm VALUES
+(1825131, 'user', '$2y$10$iQt8UGwr0ic635y0JSRXhuiNvlVBJ4HUpnElIf3YT15fnsx.lH6E6', 'User', '08001100111', 'Jl. Haji Raya No. 20, Bandung, 40111'),
+(10572391, 'admin', '$2y$10$cpG9O.D9vs9gBnheEXl1j.Od5nrWg2krA9sFmK6t/HuXmVkbfUqP.', 'Admin', '08001100000', 'Jl. Haji Raya No. 20, Bandung, 40000');
 
-INSERT INTO `barang` (`id_umkm`, `nama_barang`, `harga_barang`, `stok_barang`, `stok_minimal`)
-VALUES
-(03508763, 'Masker KF94', '2990', 25, 4),
-(03508763, 'Masker KN95', '4999', 1298, 100),
-(03508763, 'Pensil 2B', '7000', 120, 1),
-(03508763, 'Windows 10 Pro', '3500000', 900, 17),
-(03508763, 'Xiaomi Ear Buds 4.0', '395000', 17, 0);
+INSERT INTO barang VALUES
+(10572391, 'Jamur Penyembuh', '120000', 0, 7),
+(10572391, 'Kulit Kelinci', '55000', 3, 3),
+(10572391, 'Masker KF94', '2990', 250, 4),
+(10572391, 'Masker KN95', '4999', 1298, 100),
+(10572391, 'Pensil 2B', '7000', 120, 1),
+(10572391, 'Windows 10 Pro', '3500000', 900, 17),
+(10572391, 'Xiaomi Ear Buds 4.0', '395000', 17, 0);
 
-INSERT INTO `transaksi` (`id_transaksi`, `id_umkm`, `status_pembayaran`, `keterangan`, `tanggal_waktu_transaksi`)
-VALUES
-(00000000000000639563, 03508763, 1, 'Oryzomys dimidiatus, also known as the Nicaraguan oryzomys, Thomas\'s rice rat, or the Nicaraguan rice rat, is a rodent in the genus Oryzomys of the family Cricetidae. It is known from only three specimens, all collected in southeastern Nicaragua (range pictured) since 1904.', '2021-07-25 10:53:10'),
-(00000000000000639566, 03508763, 1, 'The Castle of St John the Baptist, also called the Black Castle, is a circular fort in Santa Cruz de Tenerife in the Canary Islands. It is located in the heart of the city, near the Parque Marítimo César Manrique and behind the Auditorio de Tenerife. Construction began in 1641 and was completed in 1644.', '2021-07-25 10:53:10');
+INSERT INTO transaksi VALUES
+(18456678776, 10572391, 0, 'Oryzomys dimidiatus, also known as the Nicaraguan oryzomys, Thomas\'s rice rat, or the Nicaraguan rice rat, is a rodent in the genus Oryzomys of the family Cricetidae. It is known from only three specimens, all collected in southeastern Nicaragua (range pictured) since 1904.', '2021-07-25 12:58:32'),
+(632277696543, 10572391, 1, 'The Castle of St John the Baptist, also called the Black Castle, is a circular fort in Santa Cruz de Tenerife in the Canary Islands. It is located in the heart of the city, near the Parque Marítimo César Manrique and behind the Auditorio de Tenerife. Construction began in 1641 and was completed in 1644.', '2021-07-25 10:53:10');
 
-INSERT INTO `penjualan` (`id_transaksi`, `nama_barang`, `harga_barang`, `jumlah_barang`)
-VALUES
-(00000000000000639563, 'Pensil 2B', '7000', 3),
-(00000000000000639563, 'Windows 10 Pro', '7000', 1),
-(00000000000000639566, 'Windows 10 Pro', '3500000', 46),
-(00000000000000639566, 'Xiaomi Ear Buds 4.0', '395000', 46);
+INSERT INTO penjualan VALUES
+(18456678776, 'Pensil 2B', '7000', 3),
+(18456678776, 'Kulit Kelinci', '55000', 2),
+(632277696543, 'Windows 10 Pro', '3500000', 46),
+(632277696543, 'Xiaomi Ear Buds 4.0', '395000', 46);

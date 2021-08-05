@@ -3,15 +3,34 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-use Exception;
+use App\Models\m_signin;
 
-class m_sale extends Model
-{
-    public const SALE_FAILURE = 1;
+class m_sale extends Model {
+    private $signin;
+    private $database;
 
-    public function get_sale(string $id_transaksi)
-    {
-        $db = db_connect();
+    function __construct() {
+		$this->signin = new m_signin();
+        $this->database = db_connect();
+	}
+
+    public function getSale() {
+        $auth = $this->signin->getAuth();
+        $idUmkm = $auth['idUmkm'];
+        $sql = "SELECT *, (SELECT SUM(jumlah_barang)
+                FROM penjualan
+                WHERE id_transaksi = transaksi.id_transaksi)
+                AS jumlah_barang
+                FROM transaksi
+                WHERE id_umkm = '$idUmkm'
+                ORDER BY tanggal_waktu_transaksi DESC";
+        $result = $this->database->query($sql);
+        return $result->getResultArray();
+    }
+
+    public function getTxn(string $txnId) {
+        $auth = $this->signin->getAuth();
+        $idUmkm = $auth['idUmkm'];
         $sql = "SELECT transaksi.id_transaksi, penjualan.nama_barang,
                 penjualan.harga_barang, penjualan.jumlah_barang,
                 transaksi.status_pembayaran, transaksi.keterangan,
@@ -19,42 +38,24 @@ class m_sale extends Model
                 FROM transaksi
                 INNER JOIN penjualan
                 ON (transaksi.id_transaksi = penjualan.id_transaksi
-                AND transaksi.id_transaksi = '$id_transaksi')";
-        if (($result = $db->query($sql)) === null)
-        {
-            throw new Exception('Database: Sale terjadi kegagalan.', m_sale::SALE_FAILURE);
-        }
-        $db->close();
+                AND transaksi.id_umkm = '$idUmkm'
+                AND transaksi.id_transaksi = '$txnId')
+                ORDER BY transaksi.tanggal_waktu_transaksi DESC";
+        $result = $this->database->query($sql);
         return $result->getResultArray();
     }
 
-    public function get_txn(string $id_umkm)
-    {
-        $db = db_connect();
-        $sql = "SELECT *, (SELECT SUM(jumlah_barang)
-                FROM penjualan
-                WHERE id_transaksi = transaksi.id_transaksi)
-                AS jumlah_barang
-                FROM transaksi";
-        if (($result = $db->query($sql)) === null)
-        {
-            throw new Exception('Database: Sale terjadi kegagalan.', m_sale::SALE_FAILURE);
-        }
-        $db->close();
-        return $result->getResultArray();
-    }
-
-    public function payoff(string $id_transaksi)
-    {
-        $db = db_connect();
+    public function payoff(string $txnId) {
+        $auth = $this->signin->getAuth();
+        $idUmkm = $auth['idUmkm'];
         $sql = "UPDATE transaksi
                 SET status_pembayaran = 1
-                WHERE id_transaksi = '$id_transaksi'";
-        if (($result = $db->query($sql)) === null)
-        {
-            throw new Exception('Database: Sale terjadi kegagalan.', m_sale::SALE_FAILURE);
-        }
-        $db->close();
-        return true;
+                WHERE id_umkm = '$idUmkm'
+                AND id_transaksi = '$txnId'";
+        $this->database->simpleQuery($sql);
+    }
+
+    function __destruct() {
+        $this->database->close();
     }
 }

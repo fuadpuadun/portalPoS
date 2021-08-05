@@ -10,6 +10,9 @@ class m_cart extends Model {
     public const ITEM_STOCK_DECREASED= 1;
     public const DEFAULT_ITEM_AMOUNT = 1;
 
+    private const MIN_RANDOM = 0;
+    private const MAX_RANDOM = 0x7FFFFFFFFFFFFFFF;
+
     private $signin;
     private $database;
 
@@ -18,13 +21,13 @@ class m_cart extends Model {
         $this->database = db_connect();
 	}
 
-    public function setCart(string $itemName, $itemAmount) {
-        $cart = $cart = $this->signin->getAppSession('cart');
+    public function setCart(string $itemName, int $itemAmount) {
+        $cart = $this->signin->getAppSession('cart');
         $cart[$itemName]['itemAmount'] = $itemAmount;
         $this->signin->setAppSession('cart', $cart);
     }
 
-    public function addCart(string $itemName, $itemAmount) {
+    public function addCart(string $itemName, int $itemAmount) {
         $cart = $this->signin->getAppSession('cart');
         if( !isset($cart[$itemName]) )
             $this->setCart($itemName, 0);
@@ -36,7 +39,6 @@ class m_cart extends Model {
     public function getCart() {
         $auth = $this->signin->getAuth();
         $cart = $this->signin->getAppSession('cart');
-        $cart = $cart==null ? [] : $cart;
         $idUmkm = $auth['idUmkm'];
         $cartInfo = [
             'cart' => [],
@@ -48,19 +50,18 @@ class m_cart extends Model {
                     FROM barang
                     WHERE id_umkm = '$idUmkm'
                     AND nama_barang = '$itemName'";
-            $result = $this->database->query($sql);
-            if( $result->getNumRows()==0 ) {
+            $result = $this->database->query($sql)->getResultArray();
+            foreach($result as $items) {
+                $itemPrice = $items['harga_barang'];
+                $itemStock = $items['stok_barang'];
+            }
+            if( empty($result) || $itemStock==0 ) {
                 array_push($cartInfo['changed'], [
                     'itemName' => $itemName,
                     'code' => m_cart::ITEM_DELETED
                 ]);
                 unset($cart[$itemName]);
                 continue;
-            }
-            $result = $result->getResultArray();
-            foreach($result as $realItem) {
-                $realItemPrice = $realItem['harga_barang'];
-                $itemStock = $realItem['stok_barang'];
             }
             if( $itemAmount>$itemStock ) {
                 array_push($cartInfo['changed'], [
@@ -69,7 +70,7 @@ class m_cart extends Model {
                 ]);
                 $cart[$itemName]['itemAmount'] = $itemStock;
             }
-            $cart[$itemName]['itemPrice'] = $realItemPrice;
+            $cart[$itemName]['itemPrice'] = $itemPrice;
             $cart[$itemName]['itemStock'] = $itemStock;
         }
         ksort($cart);
@@ -88,6 +89,76 @@ class m_cart extends Model {
             return;
         }
         $this->signin->setAppSession('cart', []);
+    }
+
+    private function gentxnId() {
+        do {
+            $randomInt = random_int(m_cart::MIN_RANDOM, m_cart::MAX_RANDOM);
+            $sql = "SELECT id_transaksi
+                    FROM transaksi
+                    WHERE id_transaksi = '$randomInt'";
+            $result = $this->database->simpleQuery($sql);
+        } while( $result->num_rows!=0 );
+        return $randomInt;
+    }
+
+    private function addTxn(string $idUmkm,
+        int $paymentStatus, string $description, $cart) {
+        $txnId = $this->gentxnId();
+        $sql = "INSERT INTO transaksi
+                VALUES(
+                    $txnId,
+                    $idUmkm,
+                    $paymentStatus,
+                    '$description',
+                    CURRENT_TIMESTAMP()
+                )";
+        $this->database->simpleQuery($sql);
+        foreach($cart as $itemName => $itemInfo) {
+            $itemPrice = $itemInfo['itemPrice'];
+            $itemAmount = $itemInfo['itemAmount'];
+            $sql = "INSERT INTO penjualan
+                    VALUES($txnId, '$itemName', $itemPrice, $itemAmount)";
+            $this->database->simpleQuery($sql);
+        }
+        return $txnId;
+    }
+
+    public function release(int $paymentStatus, string $description) {
+        $auth = $this->signin->getAuth();
+        $cart = $this->signin->getAppSession('cart');
+        $idUmkm = $auth['idUmkm'];
+        $this->database->simpleQuery("BEGIN");
+        foreach($cart as $itemName => $itemInfo) {
+            $itemAmount = $itemInfo['itemAmount'];
+            $sql = "SELECT stok_barang
+                    FROM barang
+                    WHERE id_umkm = '$idUmkm'
+                    AND nama_barang = '$itemName'
+                    FOR UPDATE";
+            $result = $this->database->query($sql);
+            if( $result->getNumRows()==0 ) {
+                $this->database->simpleQuery("ROLLBACK");
+                return null;
+            }
+            $result = $result->getResultArray();
+            foreach($result as $items)
+                $itemStock = $items['stok_barang'];
+            if( $itemAmount>$itemStock ) {
+                $this->database->simpleQuery("ROLLBACK");
+                return null;
+            }
+            $releaseItemStock = $itemStock - $itemAmount;
+            $sql = "UPDATE barang
+                    SET stok_barang = $releaseItemStock
+                    WHERE id_umkm = '$idUmkm'
+                    AND nama_barang = '$itemName'";
+            $this->database->simpleQuery($sql);
+        }
+        $txnId = $this->addTxn($idUmkm, $paymentStatus, $description, $cart);
+        $this->database->simpleQuery("COMMIT");
+        $this->delCart();
+        return $txnId;
     }
 
     function __destruct() {

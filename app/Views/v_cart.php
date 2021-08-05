@@ -29,7 +29,7 @@
                     $total += $subTotal;
             ?>
             <tr>
-                <td class="align-middle"><a href="<?= base_url('cart/delete'), "?itemName=$itemName" ?>" class="btn btn-danger btn-lg my-1"><i class="fa fa-trash"></i></a></td>
+                <td class="align-middle"><a href="<?= base_url('cart/delete')."?itemName=$itemName" ?>" class="btn btn-danger btn-lg my-1"><i class="fa fa-trash"></i></a></td>
                 <td class="align-middle"><h5 class="text-dark"><?php echo $itemName; ?></h5></td>                
                 <td>
                     <form method="get" action="<?= base_url('cart/update') ?>" class="form-group">
@@ -54,7 +54,7 @@
             <tr>
                 <td colspan="2"><a href="<?= base_url('item') ?>" class="btn btn-primary" style=" border:none; background-color:#2D58C7 !important;"><i class="fa fa-angle-left"></i> Tambah produk</a>
                 <td colspan="2"></td>
-                <td colspan="1"><a href="<?= base_url('checkout') ?>" class="btn btn-primary" style=" border:none; background-color:#58DD55 !important;">Checkout <i class="fa fa-angle-right" ></i></a></td>
+                <td colspan="1"><a href="<?= base_url('cart/checkout') ?>" class="btn btn-primary" style=" border:none; background-color:#58DD55 !important;">Checkout <i class="fa fa-angle-right" ></i></a></td>
         </tfoot>
     </table>
 </div>

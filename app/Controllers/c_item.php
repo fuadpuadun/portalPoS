@@ -18,7 +18,7 @@ class c_item extends BaseController {
 	public function index() {
 		if( !$this->signin->verifyAuth() )
 			return redirect()->to(base_url('signin'));
-		$data = $this->item->getItems();
+		$data = $this->item->getExistItems();
 		return view('v_item', $data);
 	}
 
@@ -28,7 +28,9 @@ class c_item extends BaseController {
 		$requestData = $this->request->getVar();
 		$keyword = isset($requestData['keyword']) ?
 			$requestData['keyword'] : null;
-		$data = $this->item->getItems($keyword);
+		$data = $this->item->getExistItems($keyword);
 		return view('v_item', $data);
 	}
+
+	function __destruct() {}
 }
