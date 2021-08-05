@@ -87,6 +87,8 @@ class m_signin extends Model {
         if( !isset($auth['appSession'][$key]) )
             $auth['appSession'][$key] = null;
         $appSession = $auth['appSession'][$key];
+        if( !isset($appSession) )
+            $appSession = [];
         return $appSession;
     }
 

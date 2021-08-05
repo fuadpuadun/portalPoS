@@ -23,7 +23,7 @@ class m_signup extends Model {
         return $result->num_rows!=0;
     }
 
-    private function genId() {
+    private function genUmkmId() {
         do {
             $randomInt = random_int(m_signup::MIN_RANDOM, m_signup::MAX_RANDOM);
             $sql = "SELECT id_umkm
@@ -38,7 +38,7 @@ class m_signup extends Model {
         string $alamat, string $noTelp, string $email, string $password) {
         if( $this->emailExist($email) )
             return false;
-        $idUmkm = $this->genId();
+        $idUmkm = $this->genUmkmId();
         $hashedPassword = m_utils::hashedPassword($password);
         $sql = "INSERT INTO umkm(
                     id_umkm,

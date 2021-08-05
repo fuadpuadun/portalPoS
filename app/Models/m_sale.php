@@ -22,7 +22,8 @@ class m_sale extends Model {
                 WHERE id_transaksi = transaksi.id_transaksi)
                 AS jumlah_barang
                 FROM transaksi
-                WHERE id_umkm = '$idUmkm'";
+                WHERE id_umkm = '$idUmkm'
+                ORDER BY tanggal_waktu_transaksi DESC";
         $result = $this->database->query($sql);
         return $result->getResultArray();
     }
@@ -38,7 +39,8 @@ class m_sale extends Model {
                 INNER JOIN penjualan
                 ON (transaksi.id_transaksi = penjualan.id_transaksi
                 AND transaksi.id_umkm = '$idUmkm'
-                AND transaksi.id_transaksi = '$txnId')";
+                AND transaksi.id_transaksi = '$txnId')
+                ORDER BY transaksi.tanggal_waktu_transaksi DESC";
         $result = $this->database->query($sql);
         return $result->getResultArray();
     }
