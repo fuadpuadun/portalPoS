@@ -57,9 +57,14 @@ class c_cart extends BaseController {
 	public function checkout() {
 		if( !$this->signin->verifyAuth() )
 			return redirect()->to(base_url('signin'));
-		$txnId = $this->cart->release(0, 'Hello World');
-		if( $txnId!=null )
-			return redirect()->to(base_url('sale/detail')."?txnId=$txnId");
+		$requestData = $this->request->getVar();
+		if( isset($requestData['paymentStatus'], $requestData['description']) ) {
+			$paymentStatus = $requestData['paymentStatus'];
+			$description = $requestData['description'];
+			$txnId = $this->cart->release($paymentStatus, $description);
+			if( $txnId!=null )
+				return redirect()->to(base_url('sale/detail')."?txnId=$txnId");
+		}
 		return redirect()->to(base_url('cart'));
 	}
 

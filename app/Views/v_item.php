@@ -29,6 +29,7 @@
         <tbody>
             <?php
                 $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+                $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
                 foreach ($this->data as $item) {
                     $itemName = $item['nama_barang'];
                     $itemPrice = $item['harga_barang'];

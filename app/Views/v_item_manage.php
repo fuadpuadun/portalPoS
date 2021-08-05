@@ -21,7 +21,8 @@
         </thead>
         <tbody>
             <?php
-                $formatter = new NumberFormatter('id_ID',  NumberFormatter::CURRENCY);
+                $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+                $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
                 foreach($this->data as $barang) {
                     $itemName = $barang['nama_barang'];
                     $itemPrice = $barang['harga_barang'];
@@ -30,7 +31,7 @@
             ?>
             <tr>
                 <td><h5 class="<?= $itemStock<=$itemMinStock ? 'text-danger' : 'text-dark' ?>"><?= $itemName ?></h5></td>
-                <td><h5 class="text-dark"><?= $itemPrice ?></h5></td>
+                <td><h5 class="text-dark"><?= $formatter->formatCurrency($itemPrice, 'IDR') ?></h5></td>
                 <td><h5 class="text-dark"><?= $itemStock ?></h5></td>
                 <!-- Trigger Update -->
                 <div class="modal fade" id="confirm-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
