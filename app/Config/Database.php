@@ -30,12 +30,11 @@ class Database extends Config
 	 *
 	 * @var array
 	 */
-	const BUKAN_LINUX = strtoupper(substr(PHP_OS, 0, 3))==='WIN';
 	public $default = [
 		'DSN'      => '',
-		'hostname' => Database::BUKAN_LINUX ? 'localhost' : '0.0.0.0',
+		'hostname' => PHP_OS=='Linux' ? '0.0.0.0' : 'localhost',
 		'username' => 'root',
-		'password' => Database::BUKAN_LINUX ? '' : 'root',
+		'password' => PHP_OS=='Linux' ? 'root' : '',
 		'database' => 'pos',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
