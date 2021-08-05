@@ -19,6 +19,8 @@ class c_manage extends BaseController {
 		if( !$this->signin->verifyAuth() )
 			return redirect()->to(base_url('signin'));
 		$data = $this->item->getItems();
-		return view('v_item_management', $data);
+		return view('v_item_manage', $data);
 	}
+
+	function __destruct() {}
 }

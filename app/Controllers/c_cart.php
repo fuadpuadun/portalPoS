@@ -53,4 +53,9 @@ class c_cart extends BaseController {
 		$this->cart->delCart();
 		return redirect()->to(base_url('cart'));
 	}
+
+	public function checkout() {
+	}
+
+	function __destruct() {}
 }
