@@ -54,7 +54,7 @@
             <tr>
                 <td colspan="2"><a href="<?= base_url('item') ?>" class="btn btn-primary" style=" border:none; background-color:#2D58C7 !important;"><i class="fa fa-angle-left"></i> Tambah produk</a>
                 <td colspan="2"></td>
-                <td colspan="1"><a href="<?= base_url('checkout') ?>" class="btn btn-primary" style=" border:none; background-color:#58DD55 !important;">Checkout <i class="fa fa-angle-right" ></i></a></td>
+                <td colspan="1"><a href="<?= base_url('cart/checkout') ?>" class="btn btn-primary" style=" border:none; background-color:#58DD55 !important;">Checkout <i class="fa fa-angle-right" ></i></a></td>
         </tfoot>
     </table>
 </div>

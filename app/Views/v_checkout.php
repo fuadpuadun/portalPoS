@@ -53,12 +53,12 @@
                 <div class="form-group row">
                     <label for="status" class="col-sm-3 col-form-label">Status Pembayaran</label>
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
                         <label class="form-check-label" for="flexRadioDefault1">Belum Lunas</label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">Default checked radio</label>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">Lunas</label>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -76,8 +76,8 @@
                 </div>
                 <!--Tombol kembali & checkout-->
                 <div class="d-flex justify-content-sm-between">
-                    <a href="<?php echo base_url('invoice'); ?>" class="btn btn-primary"><i class="fa fa-angle-left"></i> Kembali</a>
-                    <a href="<?php echo base_url('invoice'); ?>" class="btn btn-primary">Pelunasan <i class="fa fa-angle-right"></i> </a>
+                    <a href="<?php echo base_url('cart'); ?>" class="btn btn-primary"><i class="fa fa-angle-left"></i> Kembali</a>
+                    <a href="<?php echo base_url('cart'); ?>" class="btn btn-primary">Pelunasan <i class="fa fa-angle-right"></i> </a>
             </div>
         </div>
     </body>
