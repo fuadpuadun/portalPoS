@@ -12,11 +12,12 @@
     <table class="table table-responsive-sm">
         <thead class="text-white" style="background-color:#2D58C7;">
             <tr>
-                <th style="width:30%">Barang</th>
+                <th style="width:25%">Barang</th>
                 <th style="width:15%">Harga</th>
-                <th style="width:20%">Stok</th>
+                <th style="width:15%">Stok Minimum</th>
+                <th style="width:15%">Stok</th>
                 <th style="width:15%"></th>
-                <th style="width:20%"></th>
+                <th style="width:15%"></th>
             </tr>
         </thead>
         <tbody>
@@ -31,8 +32,9 @@
             ?>
             <tr>
                 <td><h5 class="<?= $itemStock<=$itemMinStock ? 'text-danger' : 'text-dark' ?>"><?= $itemName ?></h5></td>
-                <td><h5 class="text-dark"><?= $formatter->formatCurrency($itemPrice, 'IDR') ?></h5></td>
-                <td><h5 class="text-dark"><?= $itemStock ?></h5></td>
+                <td><h5 class="<?= $itemStock<=$itemMinStock ? 'text-danger' : 'text-dark' ?>"><?= $formatter->formatCurrency($itemPrice, 'IDR') ?></h5></td>
+                <td><h5 class="<?= $itemStock<=$itemMinStock ? 'text-danger' : 'text-dark' ?>"><?= $itemMinStock ?></h5></td>
+                <td><h5 class="<?= $itemStock<=$itemMinStock ? 'text-danger' : 'text-dark' ?>"><?= $itemStock ?></h5></td>
                 <!-- Trigger Update -->
                 <div class="modal fade" id="confirm-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
