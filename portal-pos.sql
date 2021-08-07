@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS transaksi(
     NOT NULL,
   CONSTRAINT transaksi_barang_fk
     FOREIGN KEY(id_umkm)
-    REFERENCES barang(id_umkm)
+    REFERENCES umkm(id_umkm)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   PRIMARY KEY(id_transaksi)
