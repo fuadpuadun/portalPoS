@@ -4,27 +4,30 @@ namespace App\Controllers;
 
 use App\Models\m_signin;
 
-class c_signin extends BaseController {
+class c_signin extends BaseController
+{
 	private $signin;
 	protected $request;
 
-	function __construct() {
+	function __construct()
+	{
 		$this->signin = new m_signin();
 	}
 
-	public function index() {
-		// $this->signin->test();
-		if( $this->signin->verifyAuth() )
+	public function index()
+	{
+		if ($this->signin->verifyAuth())
 			return redirect()->to(base_url('home'));
 		return view('v_signin');
 	}
 
-	public function send() {
+	public function send()
+	{
 		$request = $this->request->getVar();
-		if( isset($request['email'], $request['password']) ) {
+		if (isset($request['email'], $request['password'])) {
 			$email = $request['email'];
 			$password = $request['password'];
-			switch( $this->signin->verify($email, $password) ) {
+			switch ($this->signin->verify($email, $password)) {
 				case m_signin::UNKNOWN_EMAIL:
 					return redirect()->to(base_url('signin'));
 				case m_signin::PASSWORD_FAILURE:
@@ -38,5 +41,7 @@ class c_signin extends BaseController {
 		return redirect()->to(base_url('signin'));
 	}
 
-	function __destruct() {}
+	function __destruct()
+	{
+	}
 }
