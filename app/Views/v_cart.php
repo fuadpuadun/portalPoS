@@ -96,7 +96,7 @@
                                     <label class="col-form-label">Nilai Kembalian:</label>
                                     <p><b id="return"></b></p>
                                     <script>
-                                        function getReturn() {
+                                        function de() {
                                             var formatter = new Intl.NumberFormat('id-ID', {
                                                 style: 'currency',
                                                 currency: 'IDR',
@@ -123,6 +123,7 @@
                 </div>
                 <?php } ?>
                 </td>
+            </tr>
         </tfoot>
     </table>
 </div>

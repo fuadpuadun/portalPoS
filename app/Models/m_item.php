@@ -52,6 +52,20 @@ class m_item extends Model {
         return $result->getResultArray();
     }
 
+    public function deleteItem(string $nama_barang) {
+        $auth = $this->signin->getAuth();
+        $idUmkm = $auth['idUmkm'];
+
+        $this->database->simpleQuery("BEGIN");
+
+        $sql = "DELETE FROM barang
+                    WHERE id_umkm = '$idUmkm'
+                    AND nama_barang = '$nama_barang'";
+        $this->database->simpleQuery($sql);
+
+        $this->database->simpleQuery("COMMIT");
+    }
+
     function __destruct() {
         $this->database->close();
     }

@@ -22,5 +22,17 @@ class c_manage extends BaseController {
 		return view('v_item_manage', $data);
 	}
 
+	public function deleteItem() {
+		if( !$this->signin->verifyAuth() )
+			return redirect()->to(base_url('signin'));
+		$requestData = $this->request->getVar();
+		if( isset($requestData['nama_barang']) ) {
+			$deleteId = $requestData['nama_barang'];
+			$this->item->deleteItem($deleteId);
+
+			return redirect()->to(base_url('manage'));
+		}
+	}
+
 	function __destruct() {}
 }

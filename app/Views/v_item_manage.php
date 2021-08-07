@@ -36,45 +36,39 @@
                 <td><h5 class="<?= $itemStock<=$itemMinStock ? 'text-danger' : 'text-dark' ?>"><?= $itemMinStock ?></h5></td>
                 <td><h5 class="<?= $itemStock<=$itemMinStock ? 'text-danger' : 'text-dark' ?>"><?= $itemStock ?></h5></td>
                 <!-- Trigger Update -->
-                <div class="modal fade" id="confirm-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Ubah Data Barang</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Anda akan mengubah data <b><i class="title"></i></b>, Tahap ini tidak bisa dikembalikan</p>
-                                <p>Yakin ingin mengupdate ?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                                <button type="button" class="btn btn-danger btn-ok" style=" border:none; background-color:#FF0000">Update</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <td><button class="btn btn-primary" style=" border:none; background-color:#676767 !important;" data-record-id="54" data-record-title="Something cool" data-toggle="modal" data-target="#confirm-delete">Ubah <i class="far fa-edit" ></i></button></td>
                 <!-- Trigger Delete -->
-                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="modalHapus" aria-hidden="true">
-                    <div class="modal-dialog">
+                <td>
+                    <button type="button" class="btn btn-danger btn-sm btn-delete" data-toggle="modal" style=" border:none; background-color:#FF0000 !important;" data-target="#deleteModal">
+                    Hapus <i class="far fa-trash-alt" ></i>
+                    </button>
+                </td>
+
+                <!-- modal delete -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="modalHapus">Konfirmasi Hapus Barang</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h5 class="modal-title" id="deleteModalLongTitle">Hapus</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                             <div class="modal-body">
-                                <p>Anda akan menghapus data <b><i class="title"></i></b>, Tahap ini tidak bisa dikembalikan</p>
-                                <p>Yakin ingin menghapus ?</p>
+                                <form action="<?= base_url('manage/delete') ?>" method="post" id="delete">
+                                    Anda akan menghapus data barang. Tindakan ini tidak dapat dikembalikan.
+
+                                    Lanjutkan ?
+                                    <input type="hidden" name="nama_barang" id="nama_barang" value="<?php echo $itemName; ?>">
+                                </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                                <button type="button" class="btn btn-danger btn-ok" style=" border:none; background-color:#FF0000">Hapus</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#FF0000;">Batalkan</button>
+                                <button form="delete" type="submit" class="btn btn-primary" >Lanjutkan</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <td><button class="btn btn-primary" style=" border:none; background-color:#FF0000" data-record-id="54" data-record-title="Something cool" data-toggle="modal" data-target="#confirm-delete">Hapus <i class="far fa-trash-alt" ></i></button></td>
             </tr>
             <?php } ?>
         </tbody>
@@ -100,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <td><button class="btn btn-primary" style=" border:none; background-color:#2D58C7" data-record-id="54" data-record-title="Something cool" data-toggle="modal" data-target="#confirm-delete">Tambah Barang <i class="fas fa-plus" ></i></button></td>
+                <td colspan="2"><button class="btn btn-primary" style=" border:none; background-color:#2D58C7" data-record-id="54" data-record-title="Something cool" data-toggle="modal" data-target="#confirm-delete">Tambah Barang <i class="fas fa-plus" ></i></button></td>
             </tr>
         </tfoot>
     </table>
