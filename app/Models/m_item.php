@@ -5,19 +5,22 @@ namespace App\Models;
 use CodeIgniter\Model;
 use App\Models\m_signin;
 
-class m_item extends Model {
+class m_item extends Model
+{
     private $signin;
     private $database;
 
-    function __construct() {
-		$this->signin = new m_signin();
+    function __construct()
+    {
+        $this->signin = new m_signin();
         $this->database = db_connect();
-	}
+    }
 
-    public function getExistItems(string $keyword = null) {
+    public function getExistItems(string $keyword = null)
+    {
         $auth = $this->signin->getAuth();
         $idUmkm = $auth['idUmkm'];
-        if( $keyword==null )
+        if ($keyword == null)
             $sql = "SELECT nama_barang, harga_barang, stok_barang
                     FROM barang
                     WHERE id_umkm = '$idUmkm'
@@ -33,11 +36,12 @@ class m_item extends Model {
         $result = $this->database->query($sql);
         return $result->getResultArray();
     }
-    
-    public function getItems(string $keyword = null) {
+
+    public function getItems(string $keyword = null)
+    {
         $auth = $this->signin->getAuth();
         $idUmkm = $auth['idUmkm'];
-        if( $keyword==null )
+        if ($keyword == null)
             $sql = "SELECT nama_barang, harga_barang, stok_barang, stok_minimal
                     FROM barang
                     WHERE id_umkm = '$idUmkm'
@@ -52,21 +56,18 @@ class m_item extends Model {
         return $result->getResultArray();
     }
 
-    public function deleteItem(string $nama_barang) {
+    public function deleteItem(string $itemName)
+    {
         $auth = $this->signin->getAuth();
         $idUmkm = $auth['idUmkm'];
-
-        $this->database->simpleQuery("BEGIN");
-
         $sql = "DELETE FROM barang
-                    WHERE id_umkm = '$idUmkm'
-                    AND nama_barang = '$nama_barang'";
+                WHERE id_umkm = '$idUmkm'
+                AND nama_barang = '$itemName'";
         $this->database->simpleQuery($sql);
-
-        $this->database->simpleQuery("COMMIT");
     }
 
-    function __destruct() {
+    function __destruct()
+    {
         $this->database->close();
     }
 }
