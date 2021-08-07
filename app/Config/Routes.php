@@ -62,7 +62,7 @@ $routes->add('/cart/checkout', 'c_cart::checkout');
 # Kelola Barang
 $routes->add('/manage', 'c_manage::manage');
 $routes->add('/manage/delete', 'c_manage::delete');
-$routes->add('/manage/update', 'c_manage::update');
+$routes->add('/manage/change', 'c_manage::change');
 $routes->add('/manage/add', 'c_manage::add');
 
 # Laporan Penjualan
