@@ -36,10 +36,11 @@
                 <td><h5 class="<?= $itemStock<=$itemMinStock ? 'text-danger' : 'text-dark' ?>"><?= $itemMinStock ?></h5></td>
                 <td><h5 class="<?= $itemStock<=$itemMinStock ? 'text-danger' : 'text-dark' ?>"><?= $itemStock ?></h5></td>
                 <!-- Trigger Update -->
-                <td><button class="btn btn-primary" style=" border:none; background-color:#676767 !important;" data-record-id="54" data-record-title="Something cool" data-toggle="modal" data-target="#confirm-delete">Ubah <i class="far fa-edit" ></i></button></td>
+                <td><button class="btn btn-primary" style=" border:none; background-color:#676767 !important;" data-record-id="54" data-record-title="Something cool" data-toggle="modal" data-target="#confirm-delete">Ubah <i class="far fa-edit" ></i></button>
+                </td>
                 <!-- Trigger Delete -->
                 <td>
-                    <a href="#" class="btn btn-danger btn-sm btn-delete" data-id="<?= $barang['nama_barang'];?>">Delete</a>
+                    <a href="#" class="btn btn-primary btn-delete" style=" border:none; background-color:#FF0000 !important;" data-id="<?= $barang['nama_barang'];?>">Hapus <i class="fas fa-trash"></i></button></a>
                 </td>
             </tr>
             <?php } ?>
@@ -71,6 +72,8 @@
         </tfoot>
     </table>
 </div>
+
+<!-- Modal Update -->
 
 <!-- modal delete -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalCenterTitle" aria-hidden="true">
