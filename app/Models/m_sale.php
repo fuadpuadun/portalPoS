@@ -5,16 +5,19 @@ namespace App\Models;
 use CodeIgniter\Model;
 use App\Models\m_signin;
 
-class m_sale extends Model {
+class m_sale extends Model
+{
     private $signin;
     private $database;
 
-    function __construct() {
-		$this->signin = new m_signin();
+    function __construct()
+    {
+        $this->signin = new m_signin();
         $this->database = db_connect();
-	}
+    }
 
-    public function getSale() {
+    public function getSale()
+    {
         $auth = $this->signin->getAuth();
         $idUmkm = $auth['idUmkm'];
         $sql = "SELECT *, (SELECT SUM(jumlah_barang)
@@ -28,7 +31,8 @@ class m_sale extends Model {
         return $result->getResultArray();
     }
 
-    public function getTxn(string $txnId) {
+    public function getTxn(string $txnId)
+    {
         $auth = $this->signin->getAuth();
         $idUmkm = $auth['idUmkm'];
         $sql = "SELECT transaksi.id_transaksi, penjualan.nama_barang,
@@ -45,7 +49,8 @@ class m_sale extends Model {
         return $result->getResultArray();
     }
 
-    public function payoff(string $txnId) {
+    public function payoff(string $txnId)
+    {
         $auth = $this->signin->getAuth();
         $idUmkm = $auth['idUmkm'];
         $sql = "UPDATE transaksi
@@ -55,7 +60,8 @@ class m_sale extends Model {
         $this->database->simpleQuery($sql);
     }
 
-    function __destruct() {
+    function __destruct()
+    {
         $this->database->close();
     }
 }

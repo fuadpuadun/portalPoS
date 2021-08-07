@@ -1,5 +1,4 @@
 <?= $this->extend('v_template') ?>
-
 <?= $this->section('content') ?>
 
 <div class="container my-5">
@@ -28,12 +27,12 @@
         </thead>
         <tbody>
             <?php
-                $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
-                $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
-                foreach ($this->data as $item) {
-                    $itemName = $item['nama_barang'];
-                    $itemPrice = $item['harga_barang'];
-                    $itemStock = $item['stok_barang'];
+            $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+            $formatter->setAttribute(NumberFormatter::MAX_FRACTION_DIGITS, 0);
+            foreach ($this->data as $item) {
+                $itemName = $item['nama_barang'];
+                $itemPrice = $item['harga_barang'];
+                $itemStock = $item['stok_barang'];
             ?>
                 <tr>
                     <td>
@@ -46,7 +45,7 @@
                         <h5 class="text-dark"><?= $itemStock; ?></h5>
                     </td>
                     <td>
-                        <a href="<?= base_url('cart')."?itemName=$itemName"; ?>" class="btn btn-primary" style=" border:none; background-color:#58DD55 !important;">Tambah <i class="fa fa-angle-right"></i></a>
+                        <a href="<?= base_url('cart') . "?itemName=$itemName"; ?>" class="btn btn-primary" style=" border:none; background-color:#58DD55 !important;">Tambah <i class="fa fa-angle-right"></i></a>
                     </td>
                 </tr>
             <?php } ?>

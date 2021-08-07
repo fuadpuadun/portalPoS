@@ -7,8 +7,7 @@ $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
-if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
-{
+if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
 	require SYSTEMPATH . 'Config/Routes.php';
 }
 
@@ -62,9 +61,9 @@ $routes->add('/cart/checkout', 'c_cart::checkout');
 
 # Kelola Barang
 $routes->add('/manage', 'c_manage::manage');
-$routes->add('/manage/delete', 'c_manage::deleteItem');
-$routes->add('/manage/update', 'c_manage::updateItem');
-$routes->add('/manage/add', 'c_manage::addItem');
+$routes->add('/manage/delete', 'c_manage::delete');
+$routes->add('/manage/change', 'c_manage::change');
+$routes->add('/manage/add', 'c_manage::add');
 
 # Laporan Penjualan
 $routes->add('/sale', 'c_sale::index');
@@ -84,7 +83,6 @@ $routes->add('/sale/payoff', 'c_sale::payoff');
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
-if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
-{
+if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }

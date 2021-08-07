@@ -5,38 +5,47 @@ namespace App\Models;
 use CodeIgniter\Model;
 use App\Models\m_utils;
 
-class m_signup extends Model {
+class m_signup extends Model
+{
     private const MIN_RANDOM = 0;
     private const MAX_RANDOM = 0xFFFFFF;
 
     private $database;
 
-    function __construct() {
+    function __construct()
+    {
         $this->database = db_connect();
-	}
+    }
 
-    private function emailExist(string $email) {
+    private function emailExist(string $email)
+    {
         $sql = "SELECT email
                 FROM umkm
                 WHERE email = '$email'";
         $result = $this->database->simpleQuery($sql);
-        return $result->num_rows!=0;
+        return $result->num_rows != 0;
     }
 
-    private function genUmkmId() {
+    private function genUmkmId()
+    {
         do {
             $randomInt = random_int(m_signup::MIN_RANDOM, m_signup::MAX_RANDOM);
             $sql = "SELECT id_umkm
                     FROM umkm
                     WHERE id_umkm = '$randomInt'";
             $result = $this->database->simpleQuery($sql);
-        } while( $result->num_rows!=0 );
+        } while ($result->num_rows != 0);
         return $randomInt;
     }
 
-    public function saveAccount(string $namaUmkm,
-        string $alamat, string $noTelp, string $email, string $password) {
-        if( $this->emailExist($email) )
+    public function saveAccount(
+        string $namaUmkm,
+        string $alamat,
+        string $noTelp,
+        string $email,
+        string $password
+    ) {
+        if ($this->emailExist($email))
             return false;
         $idUmkm = $this->genUmkmId();
         $hashedPassword = m_utils::hashedPassword($password);
@@ -59,7 +68,8 @@ class m_signup extends Model {
         return true;
     }
 
-    function __destruct() {
+    function __destruct()
+    {
         $this->database->close();
     }
 }
