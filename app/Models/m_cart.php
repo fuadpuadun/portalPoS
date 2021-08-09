@@ -44,7 +44,7 @@ class m_cart extends Model
     {
         $auth = $this->signin->getAuth();
         $cart = $this->signin->getAppSession('cart');
-        $idUmkm = $auth['idUmkm'];
+        $umkmId = $auth['umkmId'];
         $cartInfo = [
             'cart' => [],
             'changed' => [],
@@ -55,7 +55,7 @@ class m_cart extends Model
             $itemAmount = $itemInfo['itemAmount'];
             $sql = "SELECT harga_barang, stok_barang
                     FROM barang
-                    WHERE id_umkm = '$idUmkm'
+                    WHERE id_umkm = '$umkmId'
                     AND nama_barang = '$itemName'";
             $result = $this->database->query($sql)->getResultArray();
             foreach ($result as $items) {
@@ -112,7 +112,7 @@ class m_cart extends Model
     }
 
     private function addTxn(
-        string $idUmkm,
+        string $umkmId,
         int $paymentStatus,
         string $description,
         $cart
@@ -121,7 +121,7 @@ class m_cart extends Model
         $sql = "INSERT INTO transaksi
                 VALUES(
                     $txnId,
-                    $idUmkm,
+                    $umkmId,
                     $paymentStatus,
                     '$description',
                     CURRENT_TIMESTAMP()
@@ -143,13 +143,13 @@ class m_cart extends Model
         $cart = $this->signin->getAppSession('cart');
         if (empty($cart))
             return null;
-        $idUmkm = $auth['idUmkm'];
+        $umkmId = $auth['umkmId'];
         $this->database->simpleQuery("BEGIN");
         foreach ($cart as $itemName => $itemInfo) {
             $itemAmount = $itemInfo['itemAmount'];
             $sql = "SELECT stok_barang
                     FROM barang
-                    WHERE id_umkm = '$idUmkm'
+                    WHERE id_umkm = '$umkmId'
                     AND nama_barang = '$itemName'
                     FOR UPDATE";
             $result = $this->database->query($sql);
@@ -167,11 +167,11 @@ class m_cart extends Model
             $releaseItemStock = $itemStock - $itemAmount;
             $sql = "UPDATE barang
                     SET stok_barang = $releaseItemStock
-                    WHERE id_umkm = '$idUmkm'
+                    WHERE id_umkm = '$umkmId'
                     AND nama_barang = '$itemName'";
             $this->database->simpleQuery($sql);
         }
-        $txnId = $this->addTxn($idUmkm, $paymentStatus, $description, $cart);
+        $txnId = $this->addTxn($umkmId, $paymentStatus, $description, $cart);
         $this->database->simpleQuery("COMMIT");
         $this->delCart();
         return $txnId;

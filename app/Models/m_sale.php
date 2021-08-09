@@ -19,13 +19,13 @@ class m_sale extends Model
     public function getSale()
     {
         $auth = $this->signin->getAuth();
-        $idUmkm = $auth['idUmkm'];
+        $umkmId = $auth['umkmId'];
         $sql = "SELECT *, (SELECT SUM(jumlah_barang)
                 FROM penjualan
                 WHERE id_transaksi = transaksi.id_transaksi)
                 AS jumlah_barang
                 FROM transaksi
-                WHERE id_umkm = '$idUmkm'
+                WHERE id_umkm = '$umkmId'
                 ORDER BY tanggal_waktu_transaksi DESC";
         $result = $this->database->query($sql);
         return $result->getResultArray();
@@ -34,7 +34,7 @@ class m_sale extends Model
     public function getTxn(string $txnId)
     {
         $auth = $this->signin->getAuth();
-        $idUmkm = $auth['idUmkm'];
+        $umkmId = $auth['umkmId'];
         $sql = "SELECT transaksi.id_transaksi, penjualan.nama_barang,
                 penjualan.harga_barang, penjualan.jumlah_barang,
                 transaksi.status_pembayaran, transaksi.keterangan,
@@ -42,7 +42,7 @@ class m_sale extends Model
                 FROM transaksi
                 INNER JOIN penjualan
                 ON (transaksi.id_transaksi = penjualan.id_transaksi
-                AND transaksi.id_umkm = '$idUmkm'
+                AND transaksi.id_umkm = '$umkmId'
                 AND transaksi.id_transaksi = '$txnId')
                 ORDER BY transaksi.tanggal_waktu_transaksi DESC";
         $result = $this->database->query($sql);
@@ -52,10 +52,10 @@ class m_sale extends Model
     public function payoff(string $txnId)
     {
         $auth = $this->signin->getAuth();
-        $idUmkm = $auth['idUmkm'];
+        $umkmId = $auth['umkmId'];
         $sql = "UPDATE transaksi
                 SET status_pembayaran = 1
-                WHERE id_umkm = '$idUmkm'
+                WHERE id_umkm = '$umkmId'
                 AND id_transaksi = '$txnId'";
         $this->database->simpleQuery($sql);
     }

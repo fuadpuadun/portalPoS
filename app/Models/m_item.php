@@ -19,17 +19,17 @@ class m_item extends Model
     public function getExistItems(string $keyword = null)
     {
         $auth = $this->signin->getAuth();
-        $idUmkm = $auth['idUmkm'];
+        $umkmId = $auth['umkmId'];
         if ($keyword == null)
             $sql = "SELECT nama_barang, harga_barang, stok_barang
                     FROM barang
-                    WHERE id_umkm = '$idUmkm'
+                    WHERE id_umkm = '$umkmId'
                     AND stok_barang > 0
                     ORDER BY nama_barang ASC";
         else
             $sql = "SELECT nama_barang, harga_barang, stok_barang
                     FROM barang
-                    WHERE id_umkm = '$idUmkm'
+                    WHERE id_umkm = '$umkmId'
                     AND stok_barang > 0
                     AND nama_barang LIKE '%$keyword%'
                     ORDER BY nama_barang ASC";
@@ -40,16 +40,16 @@ class m_item extends Model
     public function getItems(string $keyword = null)
     {
         $auth = $this->signin->getAuth();
-        $idUmkm = $auth['idUmkm'];
+        $umkmId = $auth['umkmId'];
         if ($keyword == null)
             $sql = "SELECT nama_barang, harga_barang, stok_barang, stok_minimal
                     FROM barang
-                    WHERE id_umkm = '$idUmkm'
+                    WHERE id_umkm = '$umkmId'
                     ORDER BY nama_barang ASC";
         else
             $sql = "SELECT nama_barang, harga_barang, stok_barang, stok_minimal
                     FROM barang
-                    WHERE id_umkm = '$idUmkm'
+                    WHERE id_umkm = '$umkmId'
                     AND nama_barang LIKE '%$keyword%'
                     ORDER BY nama_barang ASC";
         $result = $this->database->query($sql);
@@ -59,9 +59,9 @@ class m_item extends Model
     public function deleteItem(string $itemName)
     {
         $auth = $this->signin->getAuth();
-        $idUmkm = $auth['idUmkm'];
+        $umkmId = $auth['umkmId'];
         $sql = "DELETE FROM barang
-                WHERE id_umkm = '$idUmkm'
+                WHERE id_umkm = '$umkmId'
                 AND nama_barang = '$itemName'";
         $this->database->simpleQuery($sql);
     }

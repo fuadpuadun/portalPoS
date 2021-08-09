@@ -39,30 +39,31 @@ class m_signup extends Model
     }
 
     public function saveAccount(
-        string $namaUmkm,
-        string $alamat,
-        string $noTelp,
+        string $umkmName,
+        string $address,
+        string $phoneNumber,
         string $email,
         string $password
     ) {
         if ($this->emailExist($email))
             return false;
-        $idUmkm = $this->genUmkmId();
-        $hashedPassword = m_utils::hashedPassword($password);
+        $umkmId = $this->genUmkmId();
+        $cryptPassword = m_utils::cryptPassword($password);
         $sql = "INSERT INTO umkm(
                     id_umkm,
                     email,
                     password,
                     nama_umkm,
-                    notelp, alamat
+                    notelp,
+                    alamat
                 )
                 VALUES(
-                    $idUmkm,
+                    $umkmId,
                     '$email',
-                    '$hashedPassword',
-                    '$namaUmkm',
-                    '$noTelp',
-                    '$alamat'
+                    '$cryptPassword',
+                    '$umkmName',
+                    '$phoneNumber',
+                    '$address'
                 )";
         $this->database->simpleQuery($sql);
         return true;
