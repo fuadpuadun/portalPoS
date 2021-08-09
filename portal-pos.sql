@@ -124,24 +124,24 @@ CREATE TABLE IF NOT EXISTS penjualan(
 # dummy
 
 INSERT INTO umkm VALUES
-(1825131, 'user', '$2y$10$iQt8UGwr0ic635y0JSRXhuiNvlVBJ4HUpnElIf3YT15fnsx.lH6E6', 'User', '08001100111', 'Jl. Haji Raya No. 20, Bandung, 40111'),
-(10572391, 'admin', '$2y$10$cpG9O.D9vs9gBnheEXl1j.Od5nrWg2krA9sFmK6t/HuXmVkbfUqP.', 'Admin', '08001100000', 'Jl. Haji Raya No. 20, Bandung, 40000');
+(1825131, 'user', '$2y$10$iQt8UGwr0ic635y0JSRXhuiNvlVBJ4HUpnElIf3YT15fnsx.lH6E6', 'PT. Jalan Menuju All-Mother 🌋', '08001100111', 'Jl. Haji Raya No. 20, Bandung, 40111'),
+(10572391, 'admin', '$2y$10$cpG9O.D9vs9gBnheEXl1j.Od5nrWg2krA9sFmK6t/HuXmVkbfUqP.', 'PT. Jangkrik Emas 💎', '08001100000', 'Jl. Haji Raya No. 20, Bandung, 40000');
 
 INSERT INTO barang VALUES
-(10572391, 'Jamur Penyembuh', '120000', 0, 7),
-(10572391, 'Kulit Kelinci', '55000', 3, 3),
-(10572391, 'Masker KF94', '2990', 250, 4),
-(10572391, 'Masker KN95', '4999', 1298, 100),
-(10572391, 'Pensil 2B', '7000', 120, 1),
-(10572391, 'Windows 10 Pro', '3500000', 900, 17),
-(10572391, 'Xiaomi Ear Buds 4.0', '395000', 17, 0);
+(10572391, '🍄 Jamur Penyembuh', '120000', 0, 7),
+(10572391, '🐰 Kulit Kelinci', '55000', 3, 3),
+(10572391, '😷 Masker KF94', '2990', 250, 4),
+(10572391, '😷 Masker KN95', '4999', 1298, 100),
+(10572391, '✏️ Pensil 2B', '7000', 120, 1),
+(10572391, '🪟 Windows 10 Pro', '3500000', 900, 17),
+(10572391, '🎧 Xiaomi Ear Buds 4.0', '395000', 17, 0);
 
 INSERT INTO transaksi VALUES
-(18456678776, 10572391, 0, 'Oryzomys dimidiatus, also known as the Nicaraguan oryzomys, Thomas\'s rice rat, or the Nicaraguan rice rat, is a rodent in the genus Oryzomys of the family Cricetidae. It is known from only three specimens, all collected in southeastern Nicaragua (range pictured) since 1904.', '2021-07-25 12:58:32'),
-(632277696543, 10572391, 1, 'The Castle of St John the Baptist, also called the Black Castle, is a circular fort in Santa Cruz de Tenerife in the Canary Islands. It is located in the heart of the city, near the Parque Marítimo César Manrique and behind the Auditorio de Tenerife. Construction began in 1641 and was completed in 1644.', '2021-07-25 10:53:10');
+(18456678776, 10572391, 0, 'We added more interesting complex relationships. 🔜 implied that, after time, one thing would lead to another. 🤓🔜🗣️ means that “I’ll be able to talk soon.” We created a scale for asking “How do you feel?”: 😄😀🙂😕☹️😴❓', '2021-07-25 12:58:32'),
+(632277696543, 10572391, 1, 'We established questions. We used❓liberally to indicate questions, and 🤔 to indicate “I’m not understanding.” I’d say questions composed about 30–40% of our communication, so this was a critical emoji discovery.', '2021-07-25 10:53:10');
 
 INSERT INTO penjualan VALUES
-(18456678776, 'Pensil 2B', '7000', 3),
-(18456678776, 'Kulit Kelinci', '55000', 2),
-(632277696543, 'Windows 10 Pro', '3500000', 46),
-(632277696543, 'Xiaomi Ear Buds 4.0', '395000', 46);
+(18456678776, '✏️ Pensil 2B', '7000', 3),
+(18456678776, '🐮 Kulit Sapi', '55000', 2),
+(632277696543, '🪟 Windows 10 Pro', '3500000', 46),
+(632277696543, '🦗 Jangkrik Emas', '395000', 46);
