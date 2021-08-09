@@ -95,8 +95,8 @@
                                 });
                             </script>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#FF0000;">Batalkan</button>
-                                <button form="change" type="submit" class="btn btn-primary">Lanjutkan</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#676767;">Kembali</button>
+                                <button form="change" type="submit" class="btn btn-primary" style=" border:none; background-color:#2D58C7;">Ubah</button>
                             </div>
                         </div>
                     </div>
@@ -128,8 +128,8 @@
                                 });
                             </script>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#FF0000;">Batalkan</button>
-                                <button form="delete" type="submit" class="btn btn-primary">Lanjutkan</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#676767;">Kembali</button>
+                                <button form="delete" type="submit" class="btn btn-primary" style=" border:none; background-color:#FF0000;">Hapus</button>
                             </div>
                         </div>
                     </div>
@@ -143,20 +143,38 @@
                     </button>
                 </td>
                 <!-- Modal Tambah Barang -->
-                <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="modalAdd">Tambah Barang</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h5 class="modal-title" id="addModalLongTitle">Tambah</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="modal-body">
-                                <p>Anda akan menambah data <b><i class="title"></i></b>, Tahap ini tidak bisa diulang</p>
-                                <p>Yakin ingin menambah data ?</p>
+                            <div class="modal-body ">
+                                <form action="<?= base_url('manage/edit') ?>" method="post" id="edit">
+                                <div class="form-group">
+                                        <label>Nama Barang </label>
+                                        <input type="text" class="form-control harga_barang" name="itemPrice" id="itemPrice" placeholder="Meja Belajar">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Harga Barang </label>
+                                        <input type="text" class="form-control harga_barang" name="itemPrice" id="itemPrice " placeholder="20000">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Stok Barang </label>
+                                        <input type="number" class="form-control stok_barang" name="itemStock" id="itemStock" placeholder="10">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Stok Minimum </label>
+                                        <input type="number" class="form-control stok_minimum" name="itemMinStock" id="itemMinStock" placeholder="5">
+                                    </div>
+                                </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                                <button type="button" class="btn btn-danger btn-ok" style=" border:none; background-color:#FF0000">Tambah</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#676767;">Kembali</button>
+                                <button form="add" type="submit" class="btn btn-primary" style=" border:none; background-color:#2D58C7;">Tambah</button>
                             </div>
                         </div>
                     </div>
