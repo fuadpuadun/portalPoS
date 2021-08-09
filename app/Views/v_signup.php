@@ -50,37 +50,37 @@
             <h2 class="text-center">Register</h2>
             <!--Isian-->
             <div class="form-group row">
-                <label for="staticNamaUMKM" class="col-sm-3 col-form-label">Nama UMKM</label>
-                <input name="namaUmkm" type="text" class="form-control" placeholder="Nama UMKM" required="required">
+                <label for="umkmName" class="col-sm-3 col-form-label">Nama UMKM</label>
+                <input id="umkmName" name="umkmName" type="text" class="form-control" placeholder="Nama UMKM" required="required">
             </div>
             <div class="form-group row">
-                <label for="staticAlamat" class="col-sm-3 col-form-label">Alamat</label>
-                <input name="alamat" type="text" class="form-control" placeholder="Alamat" required="required">
+                <label for="address" class="col-sm-3 col-form-label">Alamat</label>
+                <input id="address" name="address" type="text" class="form-control" placeholder="Alamat" required="required">
             </div>
             <div class="form-group row">
-                <label for="staticNoHp" class="col-sm-3 col-form-label">No Telepon</label>
-                <input name="noTelp" type="text" class="form-control" placeholder="No Telepon" required="required">
+                <label for="phoneNumber" class="col-sm-3 col-form-label">No Telepon</label>
+                <input id="phoneNumber" name="phoneNumber" type="text" class="form-control" placeholder="No Telepon" required="required">
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">Email</label>
-                <input name="email" type="text" class="form-control" placeholder="Email" required="required">
+                <input id="email" name="email" type="text" class="form-control" placeholder="Email" required="required">
             </div>
             <!--pw-->
             <div class="form-group row">
-                <label for="pw" class="col-sm-3 col-form-label">Password</label>
-                <input name="password" type="password" class="form-control" placeholder="Password" required="required">
+                <label for="password" class="col-sm-3 col-form-label">Password</label>
+                <input id="password" name="password" type="password" class="form-control" placeholder="Password" required="required">
             </div>
             <div class="form-group row">
-                <label for="konfirmPw" class="col-sm-3 col-form-label">Konfirmasi Password</label>
-                <input type="password" class="form-control" placeholder="Konfirmasi Password" required="required">
+                <label for="confirPassword" class="col-sm-3 col-form-label">Konfirmasi Password</label>
+                <input id="confirPassword" type="password" class="form-control" placeholder="Konfirmasi Password" required="required">
             </div>
             <!--Tombol Register-->
             <div class="form-group row">
-                <label for="nl" class="col-sm-3 col-form-label"></label>
-                <button name="submit" type="submit" class="btn  btn-block float-right">Register</button>
+                <label for="submit" class="col-sm-3 col-form-label"></label>
+                <button id="submit" type="submit" class="btn  btn-block float-right">Register</button>
             </div>
             <div>
-                <p class="text-center">Sudah punya akun ? <a href="<?= base_url('signin') ?>">masuk</a> sekarang</p>
+                <p class="text-center">Sudah punya akun? <a href="<?= base_url('signin') ?>">masuk</a> sekarang</p>
             </div>
         </form>
     </div>
