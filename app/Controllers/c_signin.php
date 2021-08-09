@@ -35,7 +35,7 @@ class c_signin extends BaseController
 				case m_signin::ACCOUNT_FAILURE:
 					return redirect()->to(base_url('signin'));
 			}
-			$this->signin->loadAuth($email);
+			$this->signin->loadAuth($email, $password);
 			return redirect()->to(base_url('home'));
 		}
 		return redirect()->to(base_url('signin'));

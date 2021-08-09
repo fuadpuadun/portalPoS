@@ -30,23 +30,23 @@ class c_signup extends BaseController
 		if (isset(
 			$request['email'],
 			$request['password'],
-			$request['namaUmkm'],
-			$request['noTelp'],
-			$request['alamat']
+			$request['umkmName'],
+			$request['phoneNumber'],
+			$request['address']
 		)) {
 			$email = $request['email'];
 			$password = $request['password'];
-			$namaUmkm = $request['namaUmkm'];
-			$noTelp = $request['noTelp'];
-			$alamat = $request['alamat'];
+			$umkmName = $request['umkmName'];
+			$phoneNumber = $request['phoneNumber'];
+			$address = $request['address'];
 			if ($this->signup->saveAccount(
-				$namaUmkm,
-				$alamat,
-				$noTelp,
+				$umkmName,
+				$address,
+				$phoneNumber,
 				$email,
 				$password
 			)) {
-				$this->signin->loadAuth($email);
+				$this->signin->loadAuth($email, $password);
 				return redirect()->to(base_url('home'));
 			}
 		}

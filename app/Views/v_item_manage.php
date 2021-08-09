@@ -41,7 +41,7 @@
                     </td>
                     <!-- Trigger Change -->
                     <td>
-                        <button id="change" type="button" class="btn btn-primary" data-item-name="<?= $itemName ?>" data-item-price="<?= $itemPrice ?>" data-item-stock="<?= $itemStock ?>" data-item-stockmin="<?= $itemMinStock ?>" data-toggle="modal" style=" border:none; background-color:#676767 !important;" data-target="#changeModal">
+                        <button id="change" type="button" class="btn btn-primary" data-item-name="<?= $itemName ?>" data-item-price="<?= $itemPrice ?>" data-item-stock="<?= $itemStock ?>" data-item-min-stock="<?= $itemMinStock ?>" data-toggle="modal" style=" border:none; background-color:#676767 !important;" data-target="#changeModal">
                             Ubah <i class="far fa-edit"></i>
                         </button>
                     </td>
@@ -66,7 +66,7 @@
                             </div>
                             <div class="modal-body ">
                                 <form action="<?= base_url('manage/edit') ?>" method="post" id="edit">
-                                    <b id="namedisplay"></b>
+                                    <b id="nameDisplay"></b>
                                     <div class="form-group">
                                         <label>Harga Barang </label>
                                         <input type="text" class="form-control harga_barang" name="itemPrice" id="itemPrice">
@@ -86,12 +86,12 @@
                                     const itemName = $(this).data('item-name');
                                     const itemPrice = $(this).data('item-price');
                                     const itemStock = $(this).data('item-stock');
-                                    const $itemMinStock = $(this).data('item-stockmin');
+                                    const itemMinStock = $(this).data('item-min-stock');
                                     $('#itemName').val(itemName);
                                     $('#itemPrice').val(itemPrice);
                                     $('#itemStock').val(itemStock);
                                     $('#itemMinStock').val(itemMinStock);
-                                    document.getElementById("namedisplay").innerHTML = itemName;
+                                    $('#nameDisplay').html(itemName);
                                 });
                             </script>
                             <div class="modal-footer">
@@ -115,8 +115,8 @@
                             </div>
                             <div class="modal-body">
                                 <form action="<?= base_url('manage/delete') ?>" method="post" id="delete">
-                                    <p>Anda akan menghapus data barang <b id="namedisp"></b>. Tindakan ini tidak dapat dikembalikan. 
-                            </br>Lanjutkan ?</p>
+                                    <p>Anda akan menghapus data barang <b id="namedisp"></b>. Tindakan ini tidak dapat dikembalikan.
+                                        </br>Lanjutkan ?</p>
                                     <input type="hidden" name="itemName" id="itemName">
                                 </form>
                             </div>

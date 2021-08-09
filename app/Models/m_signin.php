@@ -31,26 +31,25 @@ class m_signin extends Model
         if ($result->getNumRows() == 0)
             return m_signin::UNKNOWN_EMAIL;
         $result = $result->getResultArray();
-        foreach ($result as $row)
-            return m_utils::passwordCompare($password, $row['password']) ?
+        foreach ($result as $row) {
+            $cryptPassword = $row['password'];
+            return m_utils::verifyPassword($password, $cryptPassword) ?
                 m_signin::SIGNIN_SUCCESS : m_signin::PASSWORD_FAILURE;
+        }
         return m_signin::ACCOUNT_FAILURE;
     }
 
-    public function loadAuth(string $email)
+    public function loadAuth(string $email, string $password)
     {
-        $sql = "SELECT id_umkm, password
+        $sql = "SELECT id_umkm
                 FROM umkm
                 WHERE email = '$email'";
         $result = $this->database->query($sql)->getResultArray();
-        foreach ($result as $row) {
-            $idUmkm = $row['id_umkm'];
-            $hashedPassword = $row['password'];
-        }
+        foreach ($result as $row)
+            $umkmId = $row['id_umkm'];
         $auth = [
-            'idUmkm' => $idUmkm,
-            'email' => $email,
-            'hashedPassword' => $hashedPassword,
+            'umkmId' => $umkmId,
+            'hashedPassword' => m_utils::hashedPassword($password),
             'appSession' => []
         ];
         $this->session->set('auth', $auth);
@@ -61,16 +60,21 @@ class m_signin extends Model
         if (!$this->session->has('auth'))
             return false;
         $authSession = $this->session->get('auth');
-        $idUmkm = $authSession['idUmkm'];
-        $email = $authSession['email'];
+        $umkmId = $authSession['umkmId'];
         $hashedPassword = $authSession['hashedPassword'];
-        $sql = "SELECT id_umkm
+        $sql = "SELECT password
                 FROM umkm
-                WHERE id_umkm = '$idUmkm'
-                AND email = '$email'
-                AND password = '$hashedPassword'";
-        $result = $this->database->simpleQuery($sql);
-        return $result->num_rows != 0;
+                WHERE id_umkm = '$umkmId'";
+        $result = $this->database->query($sql);
+        if ($result->getNumRows() == 0)
+            return false;
+        $result = $result->getResultArray();
+        foreach ($result as $row) {
+            $cryptPassword = $row['password'];
+            if (m_utils::verifyHashedPassword($hashedPassword, $cryptPassword))
+                return true;
+        }
+        return false;
     }
 
     public function setAuth($auth)

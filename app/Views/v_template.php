@@ -51,7 +51,7 @@
                         <a class="nav-link" href="<?= base_url('sale') ?>">Laporan Penjualan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('') ?>">Kelola Akun</a>
+                        <a class="nav-link" href="<?= base_url('account') ?>">Akun</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('signout') ?>">Keluar</a>

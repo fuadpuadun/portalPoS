@@ -93,7 +93,7 @@
                                                 <textarea name="description" class="form-control" id="description" required="required"></textarea>
                                             </div>
                                             <label class="col-form-label">Nilai Kembalian:</label>
-                                            <p><b id="return"></b></p>
+                                            <p><b id="returnPayment"></b></p>
                                             <script>
                                                 function getReturn() {
                                                     var formatter = new Intl.NumberFormat('id-ID', {
@@ -101,14 +101,14 @@
                                                         currency: 'IDR',
                                                         maximumFractionDigits: 0,
                                                     });
-                                                    var totalValue = <?= $total ?>;
-                                                    var returnValue = document.getElementById("payment").value;
-                                                    if (returnValue - totalValue > 0) {
-                                                        document.getElementById("return").innerHTML = formatter.format(returnValue - totalValue);
+                                                    var total = <?= $total ?>;
+                                                    var payment = document.getElementById("payment").value;
+                                                    if (payment - total > 0) {
+                                                        document.getElementById("returnPayment").innerHTML = formatter.format(payment - total);
                                                         document.getElementById("paymentStatus").value = 1;
                                                         return;
                                                     }
-                                                    document.getElementById("return").innerHTML = formatter.format(0);
+                                                    document.getElementById("returnPayment").innerHTML = formatter.format(0);
                                                 }
                                             </script>
                                         </form>
