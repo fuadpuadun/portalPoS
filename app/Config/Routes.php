@@ -70,6 +70,12 @@ $routes->add('/sale', 'c_sale::index');
 $routes->add('/sale/detail', 'c_sale::detail');
 $routes->add('/sale/payoff', 'c_sale::payoff');
 
+# Akun
+$routes->add('/account', 'c_account::index');
+$routes->add('/account/change/profile', 'c_account::changeProfile');
+$routes->add('/account/change/password', 'c_account::changePassword');
+$routes->add('/account/delete', 'c_account::delete');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
