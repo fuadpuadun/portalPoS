@@ -23,7 +23,7 @@ class m_account extends Model
         $umkmId = $auth['umkmId'];
         $sql = "SELECT password
                 FROM umkm
-                WHERE id_umkm = '$umkmId'";
+                WHERE id_umkm = $umkmId";
         $result = $this->database->query($sql);
         if ($result->getNumRows() == 0)
             return false;
@@ -41,7 +41,7 @@ class m_account extends Model
         $umkmId = $auth['umkmId'];
         $sql = "SELECT id_umkm, email, nama_umkm, notelp, alamat
                 FROM umkm
-                WHERE id_umkm = '$umkmId'";
+                WHERE id_umkm = $umkmId";
         $result = $this->database->query($sql);
         return $result->getResultArray()[0];
     }
@@ -53,7 +53,7 @@ class m_account extends Model
         $auth = $this->signin->getAuth();
         $umkmId = $auth['umkmId'];
         $sql = "DELETE FROM umkm
-                WHERE id_umkm = '$umkmId'";
+                WHERE id_umkm = $umkmId";
         $result = $this->database->simpleQuery($sql);
         return true;
     }
@@ -71,7 +71,7 @@ class m_account extends Model
                 email = '$email',
                 notelp = '$phoneNumber',
                 alamat = '$address'
-                WHERE id_umkm = '$umkmId'";
+                WHERE id_umkm = $umkmId";
         $this->database->simpleQuery($sql);
     }
 
@@ -84,7 +84,7 @@ class m_account extends Model
         $cryptPassword = m_utils::cryptPassword($newPassword);
         $sql = "UPDATE umkm
                 SET password = '$cryptPassword'
-                WHERE id_umkm = '$umkmId'";
+                WHERE id_umkm = $umkmId";
         $this->database->simpleQuery($sql);
         return true;
     }

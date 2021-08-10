@@ -32,7 +32,7 @@ class m_signup extends Model
             $randomInt = random_int(m_signup::MIN_RANDOM, m_signup::MAX_RANDOM);
             $sql = "SELECT id_umkm
                     FROM umkm
-                    WHERE id_umkm = '$randomInt'";
+                    WHERE id_umkm = $randomInt";
             $result = $this->database->simpleQuery($sql);
         } while ($result->num_rows != 0);
         return $randomInt;
