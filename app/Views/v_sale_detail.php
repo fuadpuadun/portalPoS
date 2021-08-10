@@ -87,7 +87,7 @@
     </div>
     <!-- Fitur -->
     <div class="d-flex justify-content-sm-between">
-        <a href="<?= base_url('sale') ?>" class="btn btn-primary"><i class="fa fa-angle-left"></i> Kembali</a>
+        <a href="<?= base_url('sale') ?>" class="btn btn-primary" style=" border:none; background-color:#676767;"><i class="fa fa-angle-left"></i> Kembali</a>
         <!-- logic php kalau status belum bayar muncul tombol / jika sudah lunas tidak ada tombol -->
         <?php if ($paymentStatus == 0) { ?>
             <a href="<?= base_url('sale/payoff') . "?txnId=$txnId" ?>" class="btn btn-primary">Pelunasan <i class="fa fa-angle-right"></i> </a>

@@ -43,7 +43,7 @@
             </div>
             <div class="">
                 <button type="button" class="btn btn-primary" data-toggle="modal" style=" border:none; background-color:#676767 !important;" data-target="#changeProfileModal">
-                    Profil <i class="far fa-edit"></i>
+                    Update Profil <i class="far fa-edit"></i>
                 </button>
                 <!-- Modal Profile -->
                 <div class="modal fade" id="changeProfileModal" tabindex="-1" role="dialog" aria-labelledby="changeProfileModalTitle" aria-hidden="true">
@@ -76,19 +76,19 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button id="cancleChangeProfile" type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#FF0000;">Batalkan</button>
+                                <button id="cancleChangeProfile" type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#676767;">Kembali</button>
                                 <script>
                                     $('#cancleChangeProfile').on('click', function() {
                                         $('#changeProfile').trigger('reset');
                                     });
                                 </script>
-                                <button form="changeProfile" type="submit" class="btn btn-primary">Lanjutkan</button>
+                                <button form="changeProfile" type="submit" class="btn btn-primary" style=" border:none; background-color:#2D58C7;">Update Data</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" style=" border:none; background-color:#676767 !important;" data-target="#changePasswordModal">
-                    Password <i class="far fa-edit"></i>
+                    Ganti Password <i class="far fa-edit"></i>
                 </button>
                 <!-- Modal Password -->
                 <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalTitle" aria-hidden="true">
@@ -126,19 +126,19 @@
                                 </script>
                             </div>
                             <div class="modal-footer">
-                                <button id="cancleChangePassword" type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#FF0000;">Batalkan</button>
+                                <button id="cancleChangePassword" type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#676767;">Kembali</button>
                                 <script>
                                     $('#cancleChangePassword').on('click', function() {
                                         $('#changePassword').trigger('reset');
                                     });
                                 </script>
-                                <button id="submitChangePassword" form="changePassword" type="submit" class="btn btn-primary">Lanjutkan</button>
+                                <button id="submitChangePassword" form="changePassword" type="submit" class="btn btn-primary" style=" border:none; background-color:#2D58C7;">Ubah Password</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" style=" border:none; background-color:#FF0000 !important;" data-target="#deleteModal">
-                    Hapus Akun
+                    Hapus Akun <i class="fas fa-trash"></i>
                 </button>
                 <!-- Modal Delete -->
                 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
@@ -157,13 +157,13 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button id="cancleDelete" type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#FF0000;">Batalkan</button>
+                                <button id="cancleDelete" type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#676767;">Kembali</button>
                                 <script>
                                     $('#cancleDelete').on('click', function() {
                                         $('#delete').trigger('reset');
                                     });
                                 </script>
-                                <button form="delete" type="submit" class="btn btn-primary">Lanjutkan</button>
+                                <button form="delete" type="submit" class="btn btn-primary" style=" border:none; background-color:#FF0000;">Hapus </button>
                             </div>
                         </div>
                     </div>

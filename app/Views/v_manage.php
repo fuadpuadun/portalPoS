@@ -95,8 +95,8 @@
                                 });
                             </script>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#FF0000;">Batalkan</button>
-                                <button form="change" type="submit" class="btn btn-primary">Lanjutkan</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#676767;">Kembali </button>
+                                <button form="change" type="submit" class="btn btn-primary" style=" border:none; background-color:#2D58C7;">Lanjutkan</button>
                             </div>
                         </div>
                     </div>
