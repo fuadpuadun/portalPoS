@@ -21,7 +21,13 @@ class c_sale extends BaseController
 	{
 		if (!$this->signin->verifyAuth())
 			return redirect()->to(base_url('signin'));
-		$data = $this->sale->getSale();
+		$requestData = $this->request->getVar();
+		$month = isset($requestData['month']) ? $requestData['month'] : 0;
+		$year = isset($requestData['year']) ? $requestData['year'] : $this->sale->getCurrentYear();
+		$data['year'] = $year;
+		$data['sale'] = $this->sale->getSale($year, $month);
+		$data['yearList'] = $this->sale->getYearList();
+		$data['monthList'] = $this->sale->getMonthList($year);
 		return view('v_sale', $data);
 	}
 
