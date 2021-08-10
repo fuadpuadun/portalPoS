@@ -94,7 +94,8 @@ class m_sale extends Model
         $result = $this->database->query($sql);
         if ($result->getNumRows() == 0)
             return null;
-        return $result->getResultArray()[0]['tahun'];
+        $year = $result->getResultArray()[0]['tahun'];
+        return $year == null ? 0 : $year;
     }
 
     public function getSale(int $year = 0, int $month = 0)
