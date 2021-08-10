@@ -68,7 +68,6 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" style=" border:none; background-color:#58DD55 !important;" data-target="#checkoutModal">
                             Checkout
                         </button>
-
                         <!-- Modal -->
                         <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">

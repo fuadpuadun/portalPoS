@@ -1,6 +1,8 @@
 -- pos
 DROP DATABASE IF EXISTS pos;
-CREATE DATABASE IF NOT EXISTS pos;
+CREATE DATABASE IF NOT EXISTS pos
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
 USE pos;
 
 -- umkm
@@ -137,8 +139,8 @@ INSERT INTO barang VALUES
 (10572391, '🎧 Xiaomi Ear Buds 4.0', '395000', 17, 0);
 
 INSERT INTO transaksi VALUES
-(18456678776, 10572391, 0, 'We added more interesting complex relationships. 🔜 implied that, after time, one thing would lead to another. 🤓🔜🗣️ means that “I’ll be able to talk soon.” We created a scale for asking “How do you feel?”: 😄😀🙂😕☹️😴❓', '2021-07-25 12:58:32'),
-(632277696543, 10572391, 1, 'We established questions. We used❓liberally to indicate questions, and 🤔 to indicate “I’m not understanding.” I’d say questions composed about 30–40% of our communication, so this was a critical emoji discovery.', '2021-07-25 10:53:10');
+(18456678776, 10572391, 0, 'We added more interesting complex relationships. 🔜 implied that, after time, one thing would lead to another. 🤓🔜🗣️ means that “I’ll be able to talk soon.” We created a scale for asking “How do you feel?”: 😄😀🙂😕☹️😴❓', '2021-01-07 05:58:32'),
+(632277696543, 10572391, 1, 'We established questions. We used❓liberally to indicate questions, and 🤔 to indicate “I’m not understanding.” I’d say questions composed about 30–40% of our communication, so this was a critical emoji discovery.', '2021-07-25 14:53:10');
 
 INSERT INTO penjualan VALUES
 (18456678776, '✏️ Pensil 2B', '7000', 3),

@@ -41,13 +41,13 @@
                     </td>
                     <!-- Trigger Change -->
                     <td>
-                        <button id="change" type="button" class="btn btn-primary" data-item-name="<?= $itemName ?>" data-item-price="<?= $itemPrice ?>" data-item-stock="<?= $itemStock ?>" data-item-min-stock="<?= $itemMinStock ?>" data-toggle="modal" style=" border:none; background-color:#676767 !important;" data-target="#changeModal">
+                        <button id="changeButton" type="button" class="btn btn-primary" data-item-name="<?= $itemName ?>" data-item-price="<?= $itemPrice ?>" data-item-stock="<?= $itemStock ?>" data-item-min-stock="<?= $itemMinStock ?>" data-toggle="modal" style=" border:none; background-color:#676767 !important;" data-target="#changeModal">
                             Ubah <i class="far fa-edit"></i>
                         </button>
                     </td>
                     <!-- Trigger Delete -->
                     <td>
-                        <button id="delete" type="button" class="btn btn-primary" data-item-name="<?= $itemName ?>" data-toggle="modal" style=" border:none; background-color:#FF0000 !important;" data-target="#deleteModal">
+                        <button id="deleteButton" type="button" class="btn btn-primary" data-item-name="<?= $itemName ?>" data-toggle="modal" style=" border:none; background-color:#FF0000 !important;" data-target="#deleteModal">
                             Hapus <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -59,44 +59,44 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="changeModalLongTitle">Ubah</h5>
+                                <h5 class="modal-title"><b id="changeModalLongTitle"></b></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body ">
-                                <form action="<?= base_url('manage/edit') ?>" method="post" id="edit">
-                                    <b id="nameDisplay"></b>
+                                <form action="<?= base_url('manage/change') ?>" method="post" id="change">
+                                    <input type="hidden" class="form-control" name="itemName" id="chageItemName">
                                     <div class="form-group">
-                                        <label>Harga Barang </label>
-                                        <input type="text" class="form-control harga_barang" name="itemPrice" id="itemPrice">
+                                        <label>Harga</label>
+                                        <input type="number" class="form-control" name="itemPrice" id="chageItemPrice" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <label>Stok Barang </label>
-                                        <input type="number" class="form-control stok_barang" name="itemStock" id="itemStock">
+                                        <label>Stok</label>
+                                        <input type="number" class="form-control" name="itemStock" id="chageItemStock" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <label>Stok Minimum </label>
-                                        <input type="number" class="form-control stok_minimum" name="itemMinStock" id="itemMinStock">
+                                        <label>Stok Minimal</label>
+                                        <input type="number" class="form-control" name="itemMinStock" id="chageItemMinStock" required="required">
                                     </div>
                                 </form>
                             </div>
                             <script>
-                                $(document).on("click", "#change", function() {
+                                $(document).on("click", "#changeButton", function() {
                                     const itemName = $(this).data('item-name');
                                     const itemPrice = $(this).data('item-price');
                                     const itemStock = $(this).data('item-stock');
                                     const itemMinStock = $(this).data('item-min-stock');
-                                    $('#itemName').val(itemName);
-                                    $('#itemPrice').val(itemPrice);
-                                    $('#itemStock').val(itemStock);
-                                    $('#itemMinStock').val(itemMinStock);
-                                    $('#nameDisplay').html(itemName);
+                                    $('#chageItemName').val(itemName);
+                                    $('#chageItemPrice').val(itemPrice);
+                                    $('#chageItemStock').val(itemStock);
+                                    $('#chageItemMinStock').val(itemMinStock);
+                                    $('#changeModalLongTitle').html(itemName);
                                 });
                             </script>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#676767;">Kembali</button>
-                                <button form="change" type="submit" class="btn btn-primary" style=" border:none; background-color:#2D58C7;">Ubah</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" border:none; background-color:#FF0000;">Batalkan</button>
+                                <button form="change" type="submit" class="btn btn-primary">Lanjutkan</button>
                             </div>
                         </div>
                     </div>
@@ -114,17 +114,17 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="<?= base_url('manage/delete') ?>" method="post" id="delete">
-                                    <p>Anda akan menghapus data barang <b id="namedisp"></b>. Tindakan ini tidak dapat dikembalikan.
+                                <form action="<?= base_url('manage/delete') ?>" method="get" id="delete">
+                                    <p>Anda akan menghapus data barang <b id="deleteNameDisplay"></b>. Tindakan ini tidak dapat dikembalikan.
                                         </br>Lanjutkan ?</p>
-                                    <input type="hidden" name="itemName" id="itemName">
+                                    <input type="hidden" name="itemName" id="deleteItemName">
                                 </form>
                             </div>
                             <script>
-                                $(document).on("click", "#delete", function() {
+                                $(document).on("click", "#deleteButton", function() {
                                     const itemName = $(this).data('item-name');
-                                    $('#itemName').val(itemName);
-                                    document.getElementById("namedisp").innerHTML = itemName;
+                                    $('#deleteItemName').val(itemName);
+                                    $('#deleteNameDisplay').html(itemName);
                                 });
                             </script>
                             <div class="modal-footer">
@@ -138,7 +138,7 @@
             <tr>
                 <td colspan="4"></td>
                 <td colspan="2">
-                    <button id="add" type="button" class="btn btn-primary" data-toggle="modal" style=" border:none; background-color:#2D58C7 !important;" data-target="#addModal">
+                    <button id="addButton" type="button" class="btn btn-primary" data-toggle="modal" style=" border:none; background-color:#2D58C7 !important;" data-target="#addModal">
                         Tambah Barang <i class="fas fa-plus"></i>
                     </button>
                 </td>
@@ -153,22 +153,22 @@
                                 </button>
                             </div>
                             <div class="modal-body ">
-                                <form action="<?= base_url('manage/edit') ?>" method="post" id="edit">
-                                <div class="form-group">
-                                        <label>Nama Barang </label>
-                                        <input type="text" class="form-control harga_barang" name="itemPrice" id="itemPrice" placeholder="Meja Belajar">
+                                <form action="<?= base_url('manage/add') ?>" method="post" id="add">
+                                    <div class="form-group">
+                                        <label>Barang </label>
+                                        <input type="text" class="form-control" name="itemName" id="addItemPrice" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <label>Harga Barang </label>
-                                        <input type="text" class="form-control harga_barang" name="itemPrice" id="itemPrice " placeholder="20000">
+                                        <label>Harga</label>
+                                        <input type="number" class="form-control" name="itemPrice" id="addItemPrice" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <label>Stok Barang </label>
-                                        <input type="number" class="form-control stok_barang" name="itemStock" id="itemStock" placeholder="10">
+                                        <label>Stok</label>
+                                        <input type="number" class="form-control" name="itemStock" id="addItemStock" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <label>Stok Minimum </label>
-                                        <input type="number" class="form-control stok_minimum" name="itemMinStock" id="itemMinStock" placeholder="5">
+                                        <label>Stok Minimal</label>
+                                        <input type="number" class="form-control" name="itemMinStock" id="addItemMinStock" required="required">
                                     </div>
                                 </form>
                             </div>

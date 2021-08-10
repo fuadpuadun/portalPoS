@@ -22,7 +22,7 @@ class c_manage extends BaseController
 		if (!$this->signin->verifyAuth())
 			return redirect()->to(base_url('signin'));
 		$data = $this->item->getItems();
-		return view('v_item_manage', $data);
+		return view('v_manage', $data);
 	}
 
 	public function delete()
@@ -36,6 +36,57 @@ class c_manage extends BaseController
 		}
 		return redirect()->to(base_url('manage'));
 	}
+
+	public function change()
+	{
+		if (!$this->signin->verifyAuth())
+			return redirect()->to(base_url('signin'));
+		$requestData = $this->request->getVar();
+		if (isset(
+			$requestData['itemName'],
+			$requestData['itemPrice'],
+			$requestData['itemStock'],
+			$requestData['itemMinStock']
+		)) {
+			$itemName = $requestData['itemName'];
+			$itemPrice = $requestData['itemPrice'];
+			$itemStock = $requestData['itemStock'];
+			$itemMinStock = $requestData['itemMinStock'];
+			$this->item->changeItem(
+				$itemName,
+				$itemPrice,
+				$itemStock,
+				$itemMinStock
+			);
+		}
+		return redirect()->to(base_url('manage'));
+	}
+
+	public function add()
+	{
+		if (!$this->signin->verifyAuth())
+			return redirect()->to(base_url('signin'));
+		$requestData = $this->request->getVar();
+		if (isset(
+			$requestData['itemName'],
+			$requestData['itemPrice'],
+			$requestData['itemStock'],
+			$requestData['itemMinStock']
+		)) {
+			$itemName = $requestData['itemName'];
+			$itemPrice = $requestData['itemPrice'];
+			$itemStock = $requestData['itemStock'];
+			$itemMinStock = $requestData['itemMinStock'];
+			$this->item->addItem(
+				$itemName,
+				$itemPrice,
+				$itemStock,
+				$itemMinStock
+			);
+		}
+		return redirect()->to(base_url('manage'));
+	}
+
 
 	function __destruct()
 	{

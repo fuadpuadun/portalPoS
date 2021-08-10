@@ -54,8 +54,20 @@
             <form>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Tanggal & Waktu Transaksi</label>
-                    <div class="col-sm-9">
-                        <?= $txnDateTime ?>
+                    <div id="dateTime" class="col-sm-9">
+                        <script>
+                            var dateTime = new Date('<?= $txnDateTime ?> UTC');
+                            var options = {
+                                day: 'numeric',
+                                month: 'long',
+                                year: 'numeric',
+                                hour: 'numeric',
+                                minute: 'numeric',
+                                second: 'numeric',
+                                timeZoneName: 'short'
+                            };
+                            document.getElementById('dateTime').innerHTML = dateTime.toLocaleString('id-ID', options);
+                        </script>
                     </div>
                 </div>
                 <div class="form-group row">

@@ -26,7 +26,20 @@
                     $itemAmount = $txn['jumlah_barang'];
                 ?>
                     <tr>
-                        <td><?= $txnDateTime ?></td>
+                        <td id="dateTime<?= $txnId ?>"></td>
+                        <script>
+                            var dateTime = new Date('<?= $txnDateTime ?> UTC');
+                            var options = {
+                                day: 'numeric',
+                                month: 'long',
+                                year: 'numeric',
+                                hour: 'numeric',
+                                minute: 'numeric',
+                                second: 'numeric',
+                                timeZoneName: 'short'
+                            };
+                            document.getElementById('dateTime<?= $txnId ?>').innerHTML = dateTime.toLocaleString('id-ID', options);
+                        </script>
                         <td><?= $itemAmount ?>
                         <td><?= $paymentStatus == 0 ? 'Belum Lunas' : 'Lunas' ?></td>
                         <td><?= $txnDescription ?></td>
