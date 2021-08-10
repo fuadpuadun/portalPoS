@@ -124,7 +124,7 @@ class m_cart extends Model
                     $umkmId,
                     $paymentStatus,
                     '$description',
-                    CURRENT_TIMESTAMP()
+                    UTC_TIMESTAMP()
                 )";
         $this->database->simpleQuery($sql);
         foreach ($cart as $itemName => $itemInfo) {
