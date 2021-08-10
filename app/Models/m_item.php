@@ -66,6 +66,56 @@ class m_item extends Model
         $this->database->simpleQuery($sql);
     }
 
+    public function changeItem(
+        string $itemName,
+        string $itemPrice,
+        string $itemStock,
+        string $itemMinStock
+    ) {
+        $auth = $this->signin->getAuth();
+        $umkmId = $auth['umkmId'];
+        $sql = "UPDATE barang
+                SET harga_barang = $itemPrice,
+                stok_barang = $itemStock,
+                stok_minimal = $itemMinStock
+                WHERE id_umkm = '$umkmId'
+                AND nama_barang = '$itemName'";
+        $this->database->simpleQuery($sql);
+    }
+
+    public function addItem(
+        string $itemName,
+        string $itemPrice,
+        string $itemStock,
+        string $itemMinStock
+    ) {
+        $auth = $this->signin->getAuth();
+        $umkmId = $auth['umkmId'];
+        $sql = "SELECT nama_barang
+                FROM barang
+                WHERE id_umkm = '$umkmId'
+                AND nama_barang = '$itemName'";
+        $result = $this->database->simpleQuery($sql);
+        if ($result->num_rows != 0)
+            return false;
+        $sql = "INSERT INTO barang(
+                    id_umkm,
+                    nama_barang,
+                    harga_barang,
+                    stok_barang,
+                    stok_minimal
+                )
+                VALUES(
+                    $umkmId,
+                    '$itemName',
+                    $itemPrice,
+                    $itemStock,
+                    $itemMinStock
+                )";
+        $this->database->simpleQuery($sql);
+        return true;
+    }
+
     function __destruct()
     {
         $this->database->close();
