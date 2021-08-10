@@ -100,14 +100,13 @@
                                                         currency: 'IDR',
                                                         maximumFractionDigits: 0,
                                                     });
-                                                    var total = <?= $total ?>;
-                                                    var payment = document.getElementById("payment").value;
-                                                    if (payment - total > 0) {
-                                                        document.getElementById("returnPayment").innerHTML = formatter.format(payment - total);
+                                                    if ((document.getElementById("payment").value - <?= $total ?>) >= 0) {
+                                                        document.getElementById("returnPayment").innerHTML = formatter.format(document.getElementById("payment").value - <?= $total ?>);
                                                         document.getElementById("paymentStatus").value = 1;
                                                         return;
                                                     }
                                                     document.getElementById("returnPayment").innerHTML = formatter.format(0);
+                                                    document.getElementById("paymentStatus").value = 0;
                                                 }
                                             </script>
                                         </form>

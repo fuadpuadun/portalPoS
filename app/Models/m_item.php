@@ -23,13 +23,13 @@ class m_item extends Model
         if ($keyword == null)
             $sql = "SELECT nama_barang, harga_barang, stok_barang
                     FROM barang
-                    WHERE id_umkm = '$umkmId'
+                    WHERE id_umkm = $umkmId
                     AND stok_barang > 0
                     ORDER BY nama_barang ASC";
         else
             $sql = "SELECT nama_barang, harga_barang, stok_barang
                     FROM barang
-                    WHERE id_umkm = '$umkmId'
+                    WHERE id_umkm = $umkmId
                     AND stok_barang > 0
                     AND nama_barang LIKE '%$keyword%'
                     ORDER BY nama_barang ASC";
@@ -44,12 +44,12 @@ class m_item extends Model
         if ($keyword == null)
             $sql = "SELECT nama_barang, harga_barang, stok_barang, stok_minimal
                     FROM barang
-                    WHERE id_umkm = '$umkmId'
+                    WHERE id_umkm = $umkmId
                     ORDER BY nama_barang ASC";
         else
             $sql = "SELECT nama_barang, harga_barang, stok_barang, stok_minimal
                     FROM barang
-                    WHERE id_umkm = '$umkmId'
+                    WHERE id_umkm = $umkmId
                     AND nama_barang LIKE '%$keyword%'
                     ORDER BY nama_barang ASC";
         $result = $this->database->query($sql);
@@ -61,7 +61,7 @@ class m_item extends Model
         $auth = $this->signin->getAuth();
         $umkmId = $auth['umkmId'];
         $sql = "DELETE FROM barang
-                WHERE id_umkm = '$umkmId'
+                WHERE id_umkm = $umkmId
                 AND nama_barang = '$itemName'";
         $this->database->simpleQuery($sql);
     }
@@ -78,7 +78,7 @@ class m_item extends Model
                 SET harga_barang = $itemPrice,
                 stok_barang = $itemStock,
                 stok_minimal = $itemMinStock
-                WHERE id_umkm = '$umkmId'
+                WHERE id_umkm = $umkmId
                 AND nama_barang = '$itemName'";
         $this->database->simpleQuery($sql);
     }
@@ -93,7 +93,7 @@ class m_item extends Model
         $umkmId = $auth['umkmId'];
         $sql = "SELECT nama_barang
                 FROM barang
-                WHERE id_umkm = '$umkmId'
+                WHERE id_umkm = $umkmId
                 AND nama_barang = '$itemName'";
         $result = $this->database->simpleQuery($sql);
         if ($result->num_rows != 0)

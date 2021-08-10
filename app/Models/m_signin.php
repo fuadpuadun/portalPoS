@@ -64,7 +64,7 @@ class m_signin extends Model
         $hashedPassword = $authSession['hashedPassword'];
         $sql = "SELECT password
                 FROM umkm
-                WHERE id_umkm = '$umkmId'";
+                WHERE id_umkm = $umkmId";
         $result = $this->database->query($sql);
         if ($result->getNumRows() == 0)
             return false;

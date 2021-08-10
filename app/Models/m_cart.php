@@ -55,7 +55,7 @@ class m_cart extends Model
             $itemAmount = $itemInfo['itemAmount'];
             $sql = "SELECT harga_barang, stok_barang
                     FROM barang
-                    WHERE id_umkm = '$umkmId'
+                    WHERE id_umkm = $umkmId
                     AND nama_barang = '$itemName'";
             $result = $this->database->query($sql)->getResultArray();
             foreach ($result as $items) {
@@ -105,14 +105,14 @@ class m_cart extends Model
             $randomInt = random_int(m_cart::MIN_RANDOM, m_cart::MAX_RANDOM);
             $sql = "SELECT id_transaksi
                     FROM transaksi
-                    WHERE id_transaksi = '$randomInt'";
+                    WHERE id_transaksi = $randomInt";
             $result = $this->database->simpleQuery($sql);
         } while ($result->num_rows != 0);
         return $randomInt;
     }
 
     private function addTxn(
-        string $umkmId,
+        int $umkmId,
         int $paymentStatus,
         string $description,
         $cart
@@ -149,7 +149,7 @@ class m_cart extends Model
             $itemAmount = $itemInfo['itemAmount'];
             $sql = "SELECT stok_barang
                     FROM barang
-                    WHERE id_umkm = '$umkmId'
+                    WHERE id_umkm = $umkmId
                     AND nama_barang = '$itemName'
                     FOR UPDATE";
             $result = $this->database->query($sql);
@@ -167,7 +167,7 @@ class m_cart extends Model
             $releaseItemStock = $itemStock - $itemAmount;
             $sql = "UPDATE barang
                     SET stok_barang = $releaseItemStock
-                    WHERE id_umkm = '$umkmId'
+                    WHERE id_umkm = $umkmId
                     AND nama_barang = '$itemName'";
             $this->database->simpleQuery($sql);
         }
