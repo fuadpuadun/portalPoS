@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS transaksi(
     COLLATE utf8mb4_unicode_ci
     NULL,
   tanggal_waktu_transaksi TIMESTAMP
-    DEFAULT CURRENT_TIMESTAMP
+    DEFAULT UTC_TIMESTAMP
     NOT NULL,
   CONSTRAINT transaksi_barang_fk
     FOREIGN KEY(id_umkm)
